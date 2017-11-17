@@ -7,7 +7,7 @@ export default class Countries extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      language: "english",
+      language: "en",
     }
 
   }
@@ -18,7 +18,7 @@ export default class Countries extends React.Component {
       this.setState({
         language: language,
       });
-
+      this.props.onClick(language);
     } catch (error) {
       // Error saving data
     }
@@ -43,8 +43,6 @@ export default class Countries extends React.Component {
 
 
  backgroundColour= (language) => {
-  console.log(language);
-  console.log(this.state.language);
     if(this.state.language == language){
       return({
         backgroundColor: '#000000',
@@ -73,22 +71,22 @@ export default class Countries extends React.Component {
     return (
       <View>
         <View style={styles.footerButtonsRow}>
-          <TouchableHighlight style={this.backgroundColour("english")} onPress={() => this.setLanguage("english")}>
+          <TouchableHighlight style={this.backgroundColour("en")} onPress={() => this.setLanguage("en")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇬🇧</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={this.backgroundColour("bangledeshi")} onPress={() => this.setLanguage("bangledeshi")}>
+          <TouchableHighlight style={this.backgroundColour("bn")} onPress={() => this.setLanguage("bn")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇧🇩</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={this.backgroundColour("spanish")} onPress={() => this.setLanguage("spanish")}>
+          <TouchableHighlight style={this.backgroundColour("es")} onPress={() => this.setLanguage("es")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇪🇸</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={this.backgroundColour("french")} onPress={() => this.setLanguage("french")}>
+          <TouchableHighlight style={this.backgroundColour("fr")} onPress={() => this.setLanguage("fr")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇫🇷</Text>
             </View>
