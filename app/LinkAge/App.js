@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator, } from 'react-navigation';
 import AboutMe from './AboutMe';
 import AboutUs from './AboutUs';
+import Countries from './Countries';
 // import Category from './Category';
 // import Consent from './Consent';
 // import Contact from './Contact';
@@ -30,6 +31,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Apps/>
+        <Countries />
       </View>
     );
   }
@@ -38,5 +40,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  
   }
 });
