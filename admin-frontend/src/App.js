@@ -22,7 +22,7 @@ export default class App extends React.Component {
 	}
 
 	changeRegister = () => {
-		this.setState({register: !this.state.register});
+		this.setState({register: !this.state.register, loggedIn: !this.state.loggedIn});
 	}
 
 	changeLogin = () => {
@@ -36,14 +36,28 @@ export default class App extends React.Component {
 	changePassword = (e) => {
 		this.setState({password: e.target.value});
 	}
+	
 
-	getMainBody = () => {
-		
+	getSubBody = () => {
+		if (!this.state.loggedIn) {
+			return (
+				<Login 
+      					changeLogin={this.changeLogin}
+      					changeUser={this.changeUsername}
+      					changePass={this.changePassword}
+      				/>
+			);
+		} else if (this.state.register) {
+			return <Register />;
+		} else if (this.state.loggedIn) {
+			return <View />;
+		}
 	}
 
-  	render() {
-    	return (
-      		<div className={css(styles.centralFlex)}>
+	getMainBody = () => {
+		return (
+
+			<div className={css(styles.centralFlex)}>
 
       			<NavBar 
       				title={"Toynbee Hall"}
@@ -52,29 +66,15 @@ export default class App extends React.Component {
       				elements={this.state.bnt}
       			/>
 
-      			{
-      				!this.state.register && !this.state.loggedIn && 
-      				<Login 
-      					changeLogin={this.changeLogin}
-      					changeUser={this.changeUsername}
-      					changePass={this.changePassword}
-      				/>
-      			}
-
-      			{
-      				this.state.loggedIn && 
-      				<View
-
-      				/>
-      			}
-
-      			{
-      				this.state.register && 
-      				<Register />
-      			}
+      			{this.getSubBody()}
+      			
 
       		</div>
-    	);
+		);
+	}
+
+  	render() {
+    	return <div>{this.getMainBody()}</div>;
   	}
 }
 
