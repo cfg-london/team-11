@@ -15,13 +15,9 @@ export default class Register extends React.Component {
 
 	registerAccount = () => {
 		var http = new XMLHttpRequest();
-		var url = "http://138.68.150.49/api/register";
+		var url = "http://138.68.150.49/api/register?";
 		var params = "user_name=" + this.state.username + " &password=" + this.state.password + "&c_password=" + this.state.cpassword;
-		var param = {user_name: this.state.username, password: this.state.password, c_password: this.state.cpassword};
 		http.open("POST", url, true);
-
-		//Send the proper header information along with the request
-		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 		http.onreadystatechange = function() {//Call a function when the state changes.
 			if(http.readyState == 4 && http.status == 200) {
