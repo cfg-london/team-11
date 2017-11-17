@@ -30,7 +30,7 @@ export default class Register extends React.Component {
 				alert(http.responseText);
 			}
 		}
-		http.send(JSON.stringify(param));
+		http.send(params);
 	}
 
 	render() {
