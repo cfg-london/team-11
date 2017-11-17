@@ -1,19 +1,28 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator, } from 'react-navigation';
+import AboutMe from './AboutMe';
+import AboutUs from './AboutUs';
+import Category from './Category';
+import Consent from './Consent';
+import Contact from './Contact';
 import Home from './Home';
-import Settings from './Settings';
-import About from './About';
-import TableView from './TableView';
-
+import Name from './Name';
+import Notes from './Notes';
+import Overview from './Overview';
 
 
 {/*https://reactnavigation.org/docs/intro/*/}
 const Apps = StackNavigator({
-  HomeScreen: { screen: Home },
-  SettingsScreen: { screen: Settings },
-  AboutScreen: { screen: About },
-  TableViewScreen: { screen: TableView },
+  AboutMe: { screen: AboutMe },
+  AboutUs: { screen: AboutUs },
+  Category: { screen: Category },
+  Consent: { screen: Consent },
+  Contact: { screen: Contact },
+  Home: { screen: Home },
+  Name: { screen: Name },
+  Notes: { screen: Notes },
+  Overview: { screen: Overview },
 });
 
 export default class App extends React.Component {
