@@ -26,7 +26,7 @@ export default class Name extends React.Component {
         <View style={{margin:7}} />
         <Button 
           onPress={() =>
-          navigate('AboutUs')}
+          navigate('Contact')}
           title="Sumbit"
         />
       </ScrollView>      

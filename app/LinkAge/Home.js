@@ -13,13 +13,20 @@ import {
 } from 'react-navigation';
 
 export default class Home extends React.Component {
-
-
     render() {
     const { navigate } = this.props.navigation;
     return (
       <ScrollView style={{padding: 20}}>
         
+        <Text style={{fontSize: 27}}>
+          Welcome to Linkage+ App!
+        </Text>
+        <View style={{margin:7}} />
+        <Button 
+          onPress={() =>
+          navigate('Name')}
+          title="Sumbit"
+        />
       </ScrollView>      
     )
    }
