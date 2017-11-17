@@ -39,7 +39,9 @@ export default class App extends React.Component {
 	
 
 	getSubBody = () => {
-		if (!this.state.loggedIn) {
+		if (this.state.register) {
+			return <Register />;
+		} else if (!this.state.loggedIn) {
 			return (
 				<Login 
       					changeLogin={this.changeLogin}
@@ -47,8 +49,6 @@ export default class App extends React.Component {
       					changePass={this.changePassword}
       				/>
 			);
-		} else if (this.state.register) {
-			return <Register />;
 		} else if (this.state.loggedIn) {
 			return <View />;
 		}
