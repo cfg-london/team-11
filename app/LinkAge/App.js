@@ -7,7 +7,7 @@ import Countries from './Countries';
 // import Category from './Category';
 // import Consent from './Consent';
 // import Contact from './Contact';
-// import Home from './Home';
+ import Home from './Home';
 // import Name from './Name';
 // import Notes from './Notes';
 // import Overview from './Overview';
@@ -20,7 +20,7 @@ const Apps = StackNavigator({
   // Category: { screen: Category },
   // Consent: { screen: Consent },
   // Contact: { screen: Contact },
-  // Home: { screen: Home },
+   Home: { screen: Home },
   // Name: { screen: Name },
   // Notes: { screen: Notes },
   // Overview: { screen: Overview },
