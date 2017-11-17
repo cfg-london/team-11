@@ -20,8 +20,8 @@ class Archive extends Model
     /**
      * Get the references
      */
-    public function references()
+    public function referee()
     {
-        return $this->belongsTo('App\Reference', 'reference_id');
+        return $this->belongsTo('App\Referee', 'referee_id');
     }
 }
