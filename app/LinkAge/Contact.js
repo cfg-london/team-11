@@ -27,7 +27,7 @@ export default class Contact extends React.Component {
         <View style={{margin:7}} />
         <Button 
           onPress={() =>
-          navigate('AboutUs')}
+          navigate('Category')}
           title="Sumbit"
         />
       </ScrollView>      

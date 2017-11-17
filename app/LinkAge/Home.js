@@ -13,8 +13,6 @@ import {
 } from 'react-navigation';
 
 export default class Home extends React.Component {
-
-
     render() {
     const { navigate } = this.props.navigation;
     return (
@@ -22,12 +20,10 @@ export default class Home extends React.Component {
         <Text style={{fontSize: 27}}>
           Welcome to Linkage+ App!
         </Text>
-        <TextInput placeholder='Name' style={styles.input} />
-        <TextInput placeholder='Profession' style={styles.input}/>
         <View style={{margin:7}} />
         <Button 
           onPress={() =>
-          navigate('AboutUs')}
+          navigate('Name')}
           title="Sumbit"
         />
       </ScrollView>      
