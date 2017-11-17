@@ -33,8 +33,6 @@ export default class AboutMe extends React.Component {
     async componentWillMount() {
       try {
         var val= await AsyncStorage.getItem('firstTime');
-        console.log("val");
-        console.log(val);
         if(val == "true"){
           this.props.navigation.navigate('Home');
         } else {

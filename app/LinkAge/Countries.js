@@ -8,12 +8,17 @@ export default class Countries extends React.Component {
     super(props);
   }
 
-  setLanguage = (language) => {
+  async setLanguage (language) {
     try {
-      AsyncStorage.setItem('language', language);
+      await AsyncStorage.setItem('language', language);
     } catch (error) {
       // Error saving data
     }
+  }
+
+  async clearStorage () {
+    console.log("Clearing");
+    await AsyncStorage.clear();
   }
   /* Renders the page */
   render() {
@@ -39,6 +44,11 @@ export default class Countries extends React.Component {
           <TouchableHighlight style={styles.footerButton} onPress={() => this.setLanguage("french")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇫🇷</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight style={styles.footerButton} onPress={() => this.clearStorage()}>
+            <View style={styles.footerButtonView}>
+              <Text style={styles.footerButtonText}>💩</Text>
             </View>
           </TouchableHighlight>
         </View>
