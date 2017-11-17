@@ -15,7 +15,6 @@ import {
 
 export default class AboutMe extends React.Component {
 
-
     next(){
       this.doStuff();  
       this.props.navigation.navigate('AboutUs');

@@ -12,6 +12,10 @@ import {
   StackNavigator,
 } from 'react-navigation';
 
+  const navigationOptions = {
+    header: 'null',
+  }
+
 export default class Contact extends React.Component {
 
 
