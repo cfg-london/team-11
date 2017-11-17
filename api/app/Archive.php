@@ -15,7 +15,7 @@ class Archive extends Model
         'urgency','type','referee_id','notes'
     ];
 
-    protected $primaryKey = 'reference_id';
+    protected $primaryKey = 'archive_id';
 
     /**
      * Get the references

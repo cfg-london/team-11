@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Archive;
+use App\Http\Controllers\ArchiveController as ArchiveController;
 use Illuminate\Http\Request;
 use App\Reference;
 
@@ -99,7 +101,10 @@ class ReferenceController extends Controller
      */
     public function destroy(Reference $reference)
     {
+        // Add to archives before you delete!!!!!!!!!!!!!!!!!!!!!!!!
+        $archive = ArchiveController::store($reference);
+
         $reference->delete();
-        return "DELETED";
+        return $archive;
     }
 }
