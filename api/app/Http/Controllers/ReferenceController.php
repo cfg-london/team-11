@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Referee;
+use App\Reference;
 
-class RefereeController extends Controller
+class ReferenceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class RefereeController extends Controller
      */
     public function index()
     {
-        return Referee::all();
+        return Reference::all();
     }
 
     /**
@@ -35,11 +35,16 @@ class RefereeController extends Controller
      */
     public function store(Request $request)
     {
-        $referee = new Referee();
-        $referee->name = $request->name;
-        $referee->profession = $request->profession ;
-        $referee->save();
-        return $referee;
+        $reference = new Reference();
+        $reference->name = $request->name;
+        $reference->phone = $request->phone;
+        $reference->address = $request->address;
+        $reference->urgency = $request->urgency;
+        $reference->type = $request->type;
+        $reference->referee_id = $request->referee_id;
+        $reference->notes = $request->notes;
+        $reference->save();
+        return $reference;
     }
 
     /**
@@ -48,9 +53,9 @@ class RefereeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Referee $referee)
+    public function show(Reference $reference)
     {
-        return $referee;
+        return $reference;
     }
 
     /**
@@ -71,11 +76,19 @@ class RefereeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Referee $referee)
+    public function update(Request $request, Reference $reference)
     {
-        $referee->fill(['name' => $request->name, 'profession' => $request->profession]);
-        $referee->save();
-        return $referee;
+        $reference->fill([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'urgency' => $request->urgency,
+            'type' => $request->type,
+            'referee_id' => $request->referee_id,
+            'notes' => $request->notes,
+        ]);
+        $reference->save();
+        return $reference;
     }
 
     /**
@@ -84,8 +97,9 @@ class RefereeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Referee $referee)
+    public function destroy(Reference $reference)
     {
-
+        $reference->delete();
+        return "DELETED";
     }
 }

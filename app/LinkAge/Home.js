@@ -17,6 +17,7 @@ export default class Home extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <ScrollView style={{padding: 20}}>
+        
         <Text style={{fontSize: 27}}>
           Welcome to Linkage+ App!
         </Text>
