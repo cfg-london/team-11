@@ -19,3 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('referee','RefereeController');
 Route::resource('reference','ReferenceController');
+
+
+Route::post('login', 'UserController@login');
+Route::post('register', 'UserController@register');

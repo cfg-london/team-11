@@ -12,6 +12,10 @@ export default class NavBar extends React.Component {
 				<div className={css(styles.text, styles.left)}>{this.props.title}</div>
 
 
+				{this.props.elements.map(e => <div onClick={e.func} className={css(styles.right, styles.text)}>{e.name}</div>)}
+
+
+
 				{this.props.loggedIn && <div className={css(styles.right, styles.text, styles.click)} onClick={this.props.logout}>Log out</div>}
 			</div>
 		);
