@@ -5,7 +5,8 @@ import {
     TextInput,
     View,
     Button,
-    StyleSheet
+    StyleSheet,
+    AsyncStorage
   } from 'react-native';
 
 import {
@@ -16,17 +17,31 @@ export default class AboutMe extends React.Component {
 
 
     next(){
-      console.log("memes");
       this.doStuff();  
       this.props.navigation.navigate('AboutUs');
     }
 
-    async doStuff(){
+   async doStuff () {
       try {
-        await AsyncStorage.setItem('firstTime', true);
-        var val= await AsyncStorage.getItem('firstTime')
-        console.log(val);
+        await AsyncStorage.setItem('firstTime', "true");
+        var val = await AsyncStorage.getItem('firstTime');
       } catch (error) {
+
+      }
+    }
+
+    async componentWillMount() {
+      try {
+        var val= await AsyncStorage.getItem('firstTime');
+        console.log("val");
+        console.log(val);
+        if(val == "true"){
+          this.props.navigation.navigate('Home');
+        } else {
+          await AsyncStorage.setItem('Language', "english");
+        }
+      } catch (error) {
+        console.log(error);
 
       }
     }
