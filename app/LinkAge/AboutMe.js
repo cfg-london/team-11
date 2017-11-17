@@ -15,6 +15,22 @@ import {
 export default class AboutMe extends React.Component {
 
 
+    next(){
+      console.log("memes");
+      this.doStuff();  
+      this.props.navigation.navigate('AboutUs');
+    }
+
+    async doStuff(){
+      try {
+        await AsyncStorage.setItem('firstTime', true);
+        var val= await AsyncStorage.getItem('firstTime')
+        console.log(val);
+      } catch (error) {
+
+      }
+    }
+
     render() {
     const { navigate } = this.props.navigation;
     return (
@@ -26,8 +42,7 @@ export default class AboutMe extends React.Component {
         <TextInput placeholder='Profession' style={styles.input}/>
         <View style={{margin:7}} />
         <Button 
-          onPress={() =>
-          navigate('AboutUs')}
+          onPress={()=> this.next()}
           title="Sumbit"
         />
       </ScrollView>      

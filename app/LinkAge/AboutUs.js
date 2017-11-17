@@ -16,23 +16,6 @@ import {
 
 export default class AboutUs extends React.Component {
 
-    next(){
-      console.log("memes");
-      this.doStuff();
-      this.props.navigation.navigate(Home);   
-    }
-
-    async doStuff(){
-      try {
-        await AsyncStorage.setItem('firstTime', true);
-        var val= await AsyncStorage.getItem('firstTime')
-        console.log(val);
-      } catch (error) {
-
-      }
-
-    }
-
     openLink(url){
     Linking.canOpenURL(url).then(supported => {
       if (!supported) {
@@ -60,7 +43,7 @@ export default class AboutUs extends React.Component {
         />
         <Button 
           style={styles.button}
-          onPress={() =>this.next()}
+          onPress={() => navigate('Home')}
           title="Next"
         />
       </ScrollView>      
