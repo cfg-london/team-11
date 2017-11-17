@@ -26,7 +26,7 @@ export default class App extends React.Component {
     	return (
       		<div className={css(styles.centralFlex)}>
 
-      			<NavBar />
+      			<NavBar title={"Toynbee Hall"}/>
 
       			{!this.state.loggedIn && <Login changeLogin={this.changeLogin}/>}
 

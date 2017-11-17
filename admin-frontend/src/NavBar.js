@@ -7,7 +7,14 @@ export default class NavBar extends React.Component {
 
 
 	render() {
-		return <div className={css(styles.navbar)}></div>;
+		return (
+			<div className={css(styles.navbar)}>
+				<div className={css(styles.title)}>{this.props.title}</div>
+
+
+
+			</div>
+		);
 	}
 }
 
@@ -16,6 +23,9 @@ const styles = StyleSheet.create({
 		width: "100vw",
 		height: 50,
 		backgroundColor: "#f79d51",
+	},
+	title: {
+		textAlign: 'middle',
 	},
 
 
