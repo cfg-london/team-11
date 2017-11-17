@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableHighlight, ScrollView} from 'react-native';
+import { StyleSheet, View, Text, TouchableHighlight, ScrollView, AsyncStorage} from 'react-native';
 
 
 export default class Countries extends React.Component {
@@ -8,30 +8,37 @@ export default class Countries extends React.Component {
     super(props);
   }
 
+  setLanguage = (language) => {
+    try {
+      AsyncStorage.setItem('language', language);
+    } catch (error) {
+      // Error saving data
+    }
+  }
   /* Renders the page */
   render() {
   {/* Shows data is loading */}
     return (
       <View>
         <View style={styles.footerButtonsRow}>
-          <TouchableHighlight style={styles.footerButton} onPress={() => navigate('AboutScreen')}>
+          <TouchableHighlight style={styles.footerButton} onPress={() => this.setLanguage("english")}>
             <View style={styles.footerButtonView}>
-              <Text style={styles.footerButtonText}>ABOUT</Text>
+              <Text style={styles.footerButtonText}>🇬🇧</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.footerButton} onPress={() => navigate('AboutScreen')}>
+          <TouchableHighlight style={styles.footerButton} onPress={() => this.setLanguage("bangledeshi")}>
             <View style={styles.footerButtonView}>
-              <Text style={styles.footerButtonText}>FEEDBACK</Text>
+              <Text style={styles.footerButtonText}>🇧🇩</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.footerButton} onPress={() => navigate('AboutScreen')}>
+          <TouchableHighlight style={styles.footerButton} onPress={() => this.setLanguage("spanish")}>
             <View style={styles.footerButtonView}>
-              <Text style={styles.footerButtonText}>FEEDBACK</Text>
+              <Text style={styles.footerButtonText}>🇪🇸</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.footerButton} onPress={() => navigate('AboutScreen')}>
+          <TouchableHighlight style={styles.footerButton} onPress={() => this.setLanguage("french")}>
             <View style={styles.footerButtonView}>
-              <Text style={styles.footerButtonText}>FEEDBACK</Text>
+              <Text style={styles.footerButtonText}>🇫🇷</Text>
             </View>
           </TouchableHighlight>
         </View>
@@ -66,6 +73,7 @@ const styles = StyleSheet.create({
   footerButtonText: {
     color: '#FFFFFF',
     fontWeight: 'bold',
+    fontSize: 35,
   },
 
 
