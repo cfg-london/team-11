@@ -14,7 +14,7 @@ class CreateArchivesTable extends Migration
     public function up()
     {
         Schema::create('archives', function (Blueprint $table) {
-            $table->increments('reference_id');
+            $table->increments('archive_id');
             $table->boolean('urgency');
             $table->string('type');
             $table->integer('referee_id')->unsigned();
