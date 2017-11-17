@@ -13,7 +13,28 @@ import {
   StackNavigator,
 } from 'react-navigation';
 
+import Countries from './Countries';
+
+
+import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
+
 export default class AboutMe extends React.Component {
+
+    constructor(props) {
+      super(props);
+    this.state = {
+      language: "en",
+    }
+    Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
+
+    }
+
+    setLanguage(language) {
+      Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',language);
+      this.setState({
+        language: language,
+      });
+    }
 
     next(){
       this.doStuff();  
@@ -35,7 +56,7 @@ export default class AboutMe extends React.Component {
         if(val == "true"){
           this.props.navigation.navigate('Home');
         } else {
-          await AsyncStorage.setItem('language', "english");
+          await AsyncStorage.setItem('language', "en");
         }
       } catch (error) {
         console.log(error);
@@ -46,10 +67,9 @@ export default class AboutMe extends React.Component {
     render() {
     const { navigate } = this.props.navigation;
     return (
+      <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
-        <Text style={{fontSize: 27}}>
-          Tell us About you
-        </Text>
+        <PowerTranslator style={{fontSize: 27}} text={'Tell us About you'} />
         <TextInput placeholder='Name' style={styles.input} />
         <TextInput placeholder='Profession' style={styles.input}/>
         <View style={{margin:7}} />
@@ -57,7 +77,10 @@ export default class AboutMe extends React.Component {
           onPress={()=> this.next()}
           title="Sumbit"
         />
-      </ScrollView>      
+      </ScrollView>  
+      <Countries onClick={this.setLanguage.bind(this)}/>
+      </View>
+    
     )
    }
 }
@@ -66,8 +89,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   input:{
     fontSize: 20,
