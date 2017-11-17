@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
 	},
 	loginBox: {
 		marginTop: 100,
+		padding: 65,
+		border: '3px solid black',
 
 	},
 	textArea: {

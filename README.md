@@ -21,4 +21,4 @@ An system to help people of the community make quick, easy, efficient referals t
 - [Darryl Butcher](https://github.com/darrylbutcher)
 - [Manav Gupta](https://github.com/ManavGupta04)
 ## Web App
-- [Leon Boehmer](https://yeahboi.me)
+- [Leon Boehmer](https://github.com/mortuie)
