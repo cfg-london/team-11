@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, css} from 'aphrodite';
 import NavBar from './NavBar';
 import Login from './Login';
+import View from './View';
 
 
 export default class App extends React.Component {
@@ -10,6 +11,8 @@ export default class App extends React.Component {
 		super();
 		this.state = {
 			loggedIn: false,
+			username: '',
+			password: '',
 		};
 	}
 
@@ -17,18 +20,37 @@ export default class App extends React.Component {
 		this.setState({loggedIn: !this.state.loggedIn});
 	}
 
+	changeUsername = (e) => {
+		this.setState({username: e.target.value});
+	}
+
+	changePassword = (e) => {
+		this.setState({password: e.target.value});
+	}
+
 
   	render() {
-
-  		console.log(this.state.loggedIn);
-
 
     	return (
       		<div className={css(styles.centralFlex)}>
 
       			<NavBar title={"Toynbee Hall"} loggedIn={this.state.loggedIn} logout={this.changeLogin}/>
 
-      			{!this.state.loggedIn && <Login changeLogin={this.changeLogin}/>}
+      			{
+      				!this.state.loggedIn && 
+      				<Login 
+      					changeLogin={this.changeLogin}
+      					changeUser={this.changeUsername}
+      					changePass={this.changePassword}
+      				/>
+      			}
+
+      			{
+      				this.state.loggedIn && 
+      				<View
+
+      				/>
+      			}
 
       		</div>
     	);

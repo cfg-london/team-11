@@ -10,9 +10,9 @@ export default class Login extends React.Component {
 
 			<div className={css(styles.loginBox, styles.centralFlex)}>
   				<div>Username</div>
-  				<textarea className={css(styles.textArea)} />
+  				<textarea className={css(styles.textArea)} onChange={(e) => this.props.changeUser(e)}/>
   				<div>Password</div>
-  				<textarea className={css(styles.textArea)} />
+  				<textarea className={css(styles.textArea)} onChange={(e) => this.props.changePass(e)}/>
   				<button onClick={() => this.props.changeLogin()}>Login</button>
       		</div>
 
@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
 	},
 	loginBox: {
 		marginTop: 100,
+		padding: 65,
+		border: '3px solid black',
 
 	},
 	textArea: {
