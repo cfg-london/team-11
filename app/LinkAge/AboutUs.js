@@ -5,7 +5,9 @@ import {
     TextInput,
     View,
     Button,
-    StyleSheet
+    StyleSheet,
+    AsyncStorage,
+    Linking
   } from 'react-native';
 
 import {
@@ -14,20 +16,52 @@ import {
 
 export default class AboutUs extends React.Component {
 
+    next(){
+      console.log("memes");
+      this.doStuff();
+      this.props.navigation.navigate(Home);   
+    }
+
+    async doStuff(){
+      try {
+        await AsyncStorage.setItem('firstTime', true);
+        var val= await AsyncStorage.getItem('firstTime')
+        console.log(val);
+      } catch (error) {
+
+      }
+
+    }
+
+    openLink(url){
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+        console.log('Can\'t handle url: ' + url);
+      } else {
+        return Linking.openURL(url);
+      }
+    }).catch(err => console.error('An error occurred', err));
+  }
 
     render() {
     const { navigate } = this.props.navigation;
     return (
       <ScrollView style={{padding: 20}}>
-        <Text style={{fontSize: 27}}>
+        <Text style={{fontSize: 27, margin: 10}}>
           About Us
         </Text>
-        <TextInput placeholder='Name' style={styles.input} />
-        <TextInput placeholder='Profession' style={styles.input}/>
-        <View style={{margin:7}} />
+        <Text style={styles.text}>
+          We work on the frontline in the struggle against poverty. Based in the East End of London we give some of the UK’s most deprived communities a voice, providing access to free advice and support and working together to tackle social injustice.
+        </Text>
+        <Button
+          style={styles.button}
+          onPress={() => this.openLink("http://www.toynbeehall.org.uk/")}
+          title="Our Website"
+        />
         <Button 
-          onPress={() =>console.log("meme")}
-          title="Sumbit"
+          style={styles.button}
+          onPress={() =>this.next()}
+          title="Next"
         />
       </ScrollView>      
     )
@@ -44,5 +78,13 @@ const styles = StyleSheet.create({
   input:{
     fontSize: 20,
     height: 50,
+  },
+  text:{
+    fontSize: 18,
+    margin: 10,
+  },
+  button:{
+    margin:10,
+    padding: 10,
   }
 });
