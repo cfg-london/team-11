@@ -35,7 +35,7 @@ export default class AboutMe extends React.Component {
         if(val == "true"){
           this.props.navigation.navigate('Home');
         } else {
-          await AsyncStorage.setItem('Language', "english");
+          await AsyncStorage.setItem('language', "english");
         }
       } catch (error) {
         console.log(error);

@@ -6,13 +6,60 @@ export default class Countries extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      language: "english",
+    }
+
   }
 
   async setLanguage (language) {
     try {
       await AsyncStorage.setItem('language', language);
+      this.setState({
+        language: language,
+      });
+
     } catch (error) {
       // Error saving data
+    }
+  }
+
+  async componentWillMount() {
+    try {
+      var val= await AsyncStorage.getItem('firstTime');
+      if(val != "true"){
+        await AsyncStorage.setItem('language', "english");
+      } else {
+        var language = await AsyncStorage.getItem('language');
+        this.setState({
+            language: language,
+        });
+
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+ backgroundColour= (language) => {
+  console.log(language);
+  console.log(this.state.language);
+    if(this.state.language == language){
+      return({
+        backgroundColor: '#000000',
+        flex:1,
+        borderColor: '#92979B',
+        borderWidth: 0.5
+      });
+
+    } else {
+      return({
+        backgroundColor: '#FFFFFF',
+        flex:1,
+        borderColor: '#92979B',
+        borderWidth: 0.5
+      });
     }
   }
 
@@ -26,27 +73,27 @@ export default class Countries extends React.Component {
     return (
       <View>
         <View style={styles.footerButtonsRow}>
-          <TouchableHighlight style={styles.footerButton} onPress={() => this.setLanguage("english")}>
+          <TouchableHighlight style={this.backgroundColour("english")} onPress={() => this.setLanguage("english")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇬🇧</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.footerButton} onPress={() => this.setLanguage("bangledeshi")}>
+          <TouchableHighlight style={this.backgroundColour("bangledeshi")} onPress={() => this.setLanguage("bangledeshi")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇧🇩</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.footerButton} onPress={() => this.setLanguage("spanish")}>
+          <TouchableHighlight style={this.backgroundColour("spanish")} onPress={() => this.setLanguage("spanish")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇪🇸</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.footerButton} onPress={() => this.setLanguage("french")}>
+          <TouchableHighlight style={this.backgroundColour("french")} onPress={() => this.setLanguage("french")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇫🇷</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.footerButton} onPress={() => this.clearStorage()}>
+          <TouchableHighlight style={this.backgroundColour("poo")} onPress={() => this.clearStorage()}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>💩</Text>
             </View>
@@ -68,7 +115,6 @@ const styles = StyleSheet.create({
 
     footerButton: {
     flex:1,
-    backgroundColor: '#2E75B6',
     borderColor: '#92979B',
     borderWidth: 0.5,
   },
