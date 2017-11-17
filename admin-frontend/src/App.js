@@ -11,15 +11,16 @@ export default class App extends React.Component {
 
 
     	return (
-      		<div>
+      		<div className={css(styles.centralFlex)}>
 
       			<NavBar />
 
-      			<div>
+      			<div className={css(styles.loginBox, styles.centralFlex)}>
       				<div>Username</div>
       				<textarea className={css(styles.textArea)} />
       				<div>Password</div>
       				<textarea className={css(styles.textArea)} />
+      				<button>Login</button>
       			</div>
 
 
@@ -33,6 +34,16 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
+	centralFlex: {
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+		justifyContext: "center",
+	},
+	loginBox: {
+		marginTop: 100,
+
+	},
 	textArea: {
 		resize: 'none',
 	},
