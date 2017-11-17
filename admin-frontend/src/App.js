@@ -1,13 +1,26 @@
 import React from 'react';
 import {StyleSheet, css} from 'aphrodite';
 import NavBar from './NavBar';
-
+import Login from './Login';
 
 
 export default class App extends React.Component {
 
+	constructor() {
+		super();
+		this.state = {
+			loggedIn: false,
+		};
+	}
+
+	changeLogin = () => {
+		this.setState({loggedIn: !this.state.loggedIn});
+	}
+
 
   	render() {
+
+  		console.log(this.state.loggedIn);
 
 
     	return (
@@ -15,18 +28,7 @@ export default class App extends React.Component {
 
       			<NavBar />
 
-      			<div className={css(styles.loginBox, styles.centralFlex)}>
-      				<div>Username</div>
-      				<textarea className={css(styles.textArea)} />
-      				<div>Password</div>
-      				<textarea className={css(styles.textArea)} />
-      				<button>Login</button>
-      			</div>
-
-
-
-
-
+      			{!this.state.loggedIn && <Login changeLogin={this.changeLogin}/>}
 
       		</div>
     	);
