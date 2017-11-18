@@ -23,25 +23,20 @@ export default class Login extends React.Component {
 	}
 
 	checkAccount = () => {
-		console.log("HERE");
-		console.log(this.state.username);
-		console.log(this.state.password);
 
 		var xhr = new XMLHttpRequest();
-		var data = "user_name=" + encodeURIComponent(this.state.username) + "&password=" + encodeURIComponent(this.state.password);
-
-		xhr.addEventListener("readystatechange", () => {
+        var data = "user_name=" + encodeURIComponent(this.state.username) + "&password=" + encodeURIComponent(this.state.password);
+        xhr.addEventListener("readystatechange", () => {
             if (this.readyState === 4 || this.readyState === 200) {
                 console.log(this.responseText);
             } else if (this.readyState === 401) {
             	console.log(this.responseText);
-            } else {
-            	console.log(this.responseText);
             }
         });
-		xhr.open("POST", "http://138.68.150.49/api/login");
-		xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-		xhr.send(data);
+        xhr.open("POST", "http://138.68.150.49/api/login");
+        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+        xhr.send(data);
+
 	}
 
 	registerAccount = () => {
