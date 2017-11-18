@@ -80,7 +80,8 @@ export default class AboutMe extends React.Component {
           console.warn('Data not found');
         }
       };
-      request.open('POST', 'http://138.68.150.49/api/referee?name=' + "this.state.name" + '&profession=' + "this.state.profession" + '&phone=' + "0");
+      request.open('POST', encodeURI('http://138.68.150.49/api/referee?name=' + encodeURIComponent(this.state.name) + '&profession=' + encodeURIComponent(this.state.profession) + '&phone=' + encodeURIComponent(this.state.phone)));
+      request.setRequestHeader('content-type', 'application/x-www-form-urlencoded');        
       request.send();
 
   }

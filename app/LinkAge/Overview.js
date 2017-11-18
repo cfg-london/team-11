@@ -142,9 +142,9 @@ export default class Overview extends React.Component {
       console.log(this.state.address);
       console.log(this.state.urgency);
       //console.log(this.state.type);
-      console.log(this.state.notes);
-      console.log(this.state.refereeID);
-      request.open('POST', 'http://138.68.150.49/api/reference?name=' + this.state.name + '&phone=' + this.state.phone + '&address=' + this.state.address + '&urgency=' + Boolean(this.state.urgency) + '&type=' + this.state.category  + '&referee_id=' + this.state.refereeID + '&notes=' + this.state.notes);
+      console.log(encodeURI('http://138.68.150.49/api/reference?name=' + encodeURIComponent(this.state.name) + '&phone=' + encodeURIComponent(this.state.phone) + '&address=' + encodeURIComponent(this.state.address) + '&urgency=' + encodeURIComponent(Boolean(this.state.urgency))+ '&type=' + encodeURIComponent(this.state.category)  + '&referee_id=' + encodeURIComponent(this.state.refereeID) + '&notes=' + encodeURIComponent(this.state.notes)));
+      request.open('POST', encodeURI('http://138.68.150.49/api/reference?name=' + encodeURIComponent(this.state.name) + '&phone=' + encodeURIComponent(this.state.phone) + '&address=' + encodeURIComponent(this.state.address) + '&urgency=' + encodeURIComponent((this.state.urgency)) + '&type=' + encodeURIComponent(this.state.category)  + '&referee_id=' + encodeURIComponent(this.state.refereeID) + '&notes=' + encodeURIComponent(this.state.notes)));
+      request.setRequestHeader('content-type', 'application/x-www-form-urlencoded');        
       request.send();
 
   }
