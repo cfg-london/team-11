@@ -29,8 +29,7 @@ export default class Login extends React.Component {
 		xhr.addEventListener("readystatechange", () => {
 			if (this.readyState === 4 || this.readyState === 200) {
 				console.log(this.responseText);
-				this.props.changeLogin();
-			} else {
+			} else if (this.readyState === 401) {
 				console.log(this.responseText);
 			}
 		});
