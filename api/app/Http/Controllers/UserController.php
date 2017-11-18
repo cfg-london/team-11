@@ -9,12 +9,10 @@ use App\User;
 
 class UserController extends Controller
 {
-    public $successStatus = 200;
-
     public function login() {
         if (Auth::attempt(['user_name' => request('user_name'), 'password' => request('password')])) {
             return response()->json([
-                'status_code' => $successStatus
+                'status_code' => 200
             ]);
         } else {
             return response()->json([
