@@ -6,7 +6,8 @@ import {
     View,
     StyleSheet,
     AsyncStorage,
-    Linking
+    Linking,
+    Image
   } from 'react-native';
 
 import {
@@ -62,8 +63,16 @@ export default class AboutUs extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-      <ScrollView style={{padding: 20}}>
+      <ScrollView style={{margin: '5%'}}>
+        <Image
+          style={styles.image}
+          source={require('./logo.jpg')}
+        />
       <PowerTranslator text={'We work on the frontline in the struggle against poverty. Based in the East End of London we give some of the UK’s most deprived communities a voice, providing access to free advice and support and working together to tackle social injustice.'} />
+      <Text/>
+      <PowerTranslator text={'The idea of this app is for people who are in contact with the vunerable elderely and provide a medium for them to quickly and effortly tell linkage about the issue so we can have a solution faster.'} /> 
+      <Text/>
+      <PowerTranslator text={'We hope you enjoy the app and use it to help the community'} /> 
         <View style={{padding: 20, flexDirection: 'row', allign: 'center'}}>
         <Button
           style={styles.button}
@@ -108,5 +117,10 @@ const styles = StyleSheet.create({
     margin:10,
     padding: 10,
     width: 300,
+  },
+  image:{
+    margin:0,
+    width: '100%',
+    resizeMode: 'contain', 
   }
 });
