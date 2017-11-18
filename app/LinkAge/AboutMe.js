@@ -12,7 +12,7 @@ import {
 import {
   StackNavigator,
 } from 'react-navigation';
-import { Button } from 'react-native-elements'
+import { Button } from 'react-native-elements';
 import Countries from './Countries';
 
 

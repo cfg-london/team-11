@@ -4,7 +4,6 @@ import {
     Text,
     TextInput,
     View,
-    Button,
     StyleSheet,
     AsyncStorage,
     Linking
@@ -13,13 +12,24 @@ import {
 import {
   StackNavigator,
 } from 'react-navigation';
-
+import { Button } from 'react-native-elements';
 import Countries from './Countries';
 
 
 import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
 
 export default class AboutUs extends React.Component {
+
+
+  static navigationOptions = ({ navigation, screenProps }) => ({
+      headerTitle: "About Toynbee Hall",
+      headerStyle: {
+        backgroundColor: '#FF8E00'
+      },
+      headerTintColor: '#FFFFFF',
+      /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
+  });
+
 
     constructor(props) {
       super(props);
@@ -53,18 +63,26 @@ export default class AboutUs extends React.Component {
     return (
       <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
-      <PowerTranslator style={{fontSize: 27, margin:10}} text={'About Us'} />
       <PowerTranslator text={'We work on the frontline in the struggle against poverty. Based in the East End of London we give some of the UK’s most deprived communities a voice, providing access to free advice and support and working together to tackle social injustice.'} />
+        <View style={{padding: 20, flexDirection: 'row', allign: 'center'}}>
         <Button
           style={styles.button}
+          backgroundColor='#FF8E00'
+          borderRadius={20}
+          large
           onPress={() => this.openLink("http://www.toynbeehall.org.uk/")}
           title="Our Website"
         />
         <Button 
           style={styles.button}
+          backgroundColor='#FF8E00'
+          borderRadius={20}
+          large
+          width={300}
           onPress={() => navigate('Home')}
           title="Next"
         />
+        </View>
       </ScrollView>  
       <Countries onClick={this.setLanguage.bind(this)}/>
       </View>
@@ -89,5 +107,6 @@ const styles = StyleSheet.create({
   button:{
     margin:10,
     padding: 10,
+    width: 300,
   }
 });
