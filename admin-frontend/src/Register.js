@@ -15,7 +15,7 @@ export default class Register extends React.Component {
 
 	registerAccount = () => {
 		var http = new XMLHttpRequest();
-		var url = "http://138.68.150.49/api/register?";
+		var url = "http://138.68.150.49/api/register";
 		var params = "user_name=" + this.state.username + " &password=" + this.state.password + "&c_password=" + this.state.cpassword;
 		http.open("POST", url, true);
 
