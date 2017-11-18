@@ -29,7 +29,7 @@ export default class Home extends React.Component {
 
 
   static navigationOptions = ({ navigation, screenProps }) => ({
-      headerTitle: "Welcome to Linkage+ app!",
+      headerTitle: "Welcome to Linkage+",
       headerStyle: {
         backgroundColor: '#FF8E00'
       },
@@ -86,7 +86,7 @@ export default class Home extends React.Component {
             padding={40}
             large
           />
-          <Text style={fontSize=100}>  </Text>
+          <Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>
           <Button 
             onPress={() =>
             this.setUrgency(0)}
@@ -98,7 +98,7 @@ export default class Home extends React.Component {
                     padding={40}
           large
           />
-          <Text style={fontSize=100}>  </Text>
+          <Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>
           <Button 
             onPress={() =>
             call(args).catch(console.error)}
