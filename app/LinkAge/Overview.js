@@ -7,7 +7,7 @@ import {
     StyleSheet,
     AsyncStorage
   } from 'react-native';
-import { Button } from 'react-native-elements';
+import PowerButton from './PowerButton';
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -197,7 +197,7 @@ export default class Overview extends React.Component {
         <PowerTranslator text={this.state.phone} />
         <PowerTranslator text={this.state.category} />
         <PowerTranslator text={this.state.notes} />
-        <Button 
+        <PowerButton 
           onPress={()=> this.submit()}
           title="Sumbit"
           backgroundColor='#FF8E00'
@@ -205,7 +205,7 @@ export default class Overview extends React.Component {
           large
         />
         <Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>
-        <Button 
+        <PowerButton 
           onPress={()=> this.addAnother()}
           title="Add another"
           backgroundColor='#FF8E00'

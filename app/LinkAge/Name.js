@@ -13,7 +13,7 @@ import {
 } from 'react-navigation';
 
 import Countries from './Countries';
-import { Button } from 'react-native-elements';
+import PowerButton from './PowerButton';
 
 import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
 
@@ -70,7 +70,7 @@ export default class Name extends React.Component {
       <ScrollView style={{padding: 20}}>
         <TextInput placeholder='Name' onChangeText={(name) => this.setState({name})} style={styles.input} />
         <View style={{margin:7}} />
-        <Button 
+        <PowerButton 
           onPress={() =>
           this.setName()}
           title="Next"
