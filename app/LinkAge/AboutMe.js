@@ -19,6 +19,8 @@ import Countries from './Countries';
 
 import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
 
+const navigationOptions = {header: null }
+
 export default class AboutMe extends React.Component {
 
     constructor(props) {
