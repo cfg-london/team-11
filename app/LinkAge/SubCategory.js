@@ -97,6 +97,7 @@ export default class SubCategory extends React.Component {
     var x=[];
     for(i=0; i<titles.length; i++){
       var title = titles[i];
+      x.push(<Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>)
     x.push( 
         <Button
           key={i}
@@ -107,7 +108,6 @@ export default class SubCategory extends React.Component {
           onPress={() => this.setCategory(title)}
           title={title}
         />
-
     );
   }
     return x;
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
    container: {
     flexDirection: 'row',
     alignItems: 'center',
-    flex:1
+    flex:1,
    },
 
   image: {

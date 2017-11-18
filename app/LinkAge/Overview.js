@@ -4,11 +4,10 @@ import {
     Text,
     TextInput,
     View,
-    Button,
     StyleSheet,
     AsyncStorage
   } from 'react-native';
-
+import { Button } from 'react-native-elements';
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -20,6 +19,14 @@ import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-
 
 export default class Overview extends React.Component {
      
+    static navigationOptions = ({ navigation, screenProps }) => ({
+      headerTitle: "Overview",
+      headerStyle: {
+        backgroundColor: '#FF8E00'
+      },
+      headerTintColor: '#FFFFFF',
+      /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
+  });
     constructor(props) {
       super(props);
 
@@ -184,7 +191,6 @@ export default class Overview extends React.Component {
     return (
       <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
-        <PowerTranslator style={{fontSize: 27}} text={'Overview'} />
         <PowerTranslator text={this.state.urgency} />
         <PowerTranslator text={'Name:' + this.state.name} />
         <PowerTranslator text={this.state.address} />
@@ -194,10 +200,17 @@ export default class Overview extends React.Component {
         <Button 
           onPress={()=> this.submit()}
           title="Sumbit"
+          backgroundColor='#FF8E00'
+          borderRadius={20}
+          large
         />
+        <Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>
         <Button 
           onPress={()=> this.addAnother()}
           title="Add another"
+          backgroundColor='#FF8E00'
+          borderRadius={20}
+          large
         />
       </ScrollView>   
       <Countries onClick={this.setLanguage.bind(this)}/>

@@ -4,7 +4,6 @@ import {
     Text,
     TextInput,
     View,
-    Button,
     StyleSheet,
     AsyncStorage
   } from 'react-native';
@@ -12,13 +11,23 @@ import {
 import {
   StackNavigator,
 } from 'react-navigation';
-
+import { Button } from 'react-native-elements';
 import Countries from './Countries';
 
 
 import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
 
 export default class Notes extends React.Component {
+    
+  static navigationOptions = ({ navigation, screenProps }) => ({
+      headerTitle: "Any other Notes",
+      headerStyle: {
+        backgroundColor: '#FF8E00'
+      },
+      headerTintColor: '#FFFFFF',
+      /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
+  });
+
     constructor(props) {
       super(props);
     this.state = {
@@ -52,11 +61,13 @@ export default class Notes extends React.Component {
     return (
       <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
-        <PowerTranslator style={{fontSize: 27}} text={'Notes'} />
-        <TextInput style={styles.input} placeholder='' onChangeText={(notes) => this.setState({notes})} style={styles.input} />
+        <TextInput multiline={true} style={styles.input} placeholder='' onChangeText={(notes) => this.setState({notes})} style={styles.input} />
         <Button 
           onPress={()=> this.setUrgency()}
           title="Sumbit"
+          backgroundColor='#FF8E00'
+          borderRadius={20}
+          large
         />
       </ScrollView>      
       <Countries onClick={this.setLanguage.bind(this)}/>
@@ -73,6 +84,7 @@ const styles = StyleSheet.create({
   },
   input:{
     fontSize: 20,
-    height: 500,
+    height: 300,
+    borderColor: '#000'
   }
 });
