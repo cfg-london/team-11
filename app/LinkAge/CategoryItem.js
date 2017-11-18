@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
+import { StyleSheet, Image, View, Text, TouchableHighlight, Dimensions } from 'react-native';
+
+const {width, height}= Dimensions.get("window");
 
 export default class CategoryItem extends React.Component {
 
@@ -38,11 +40,16 @@ export default class CategoryItem extends React.Component {
 render(){
   var id=(this.props.id);
   return(
-   <TouchableHighlight style={styles.container} onPress={()=>this.props.func(id)}>
-      <View style={styles.container}>
-      <Text style={styles.textItem}>{this.getTitle()}</Text>
-      </View>
-    </TouchableHighlight>
+      <TouchableHighlight style={styles.container} onPress={()=>this.props.func(id)}>
+        <View style={styles.container} >
+          <Image
+          style={styles.image}
+          source={require('./logo.jpg')}
+        />
+          <Text style={styles.textItem}>{this.getTitle()}</Text>
+        </View>
+      </TouchableHighlight>
+
     )
 }
 
@@ -50,11 +57,16 @@ render(){
 }
 
 const styles = StyleSheet.create({
-   container: {
-    flexDirection: 'row',
+  container: {
+    flexDirection: 'column',
+    backgroundColor: '#FFB352',
     alignItems: 'center',
-    flex:1
-   },
+    borderColor: '#FFFFFF',
+    borderWidth: 1,
+    height: height/4,
+    width: width / 3,
+    borderRadius:10,
+  },
 
   image: {
     padding:20,
@@ -69,9 +81,14 @@ const styles = StyleSheet.create({
     padding:20,
     fontSize: 20,
     color: '#000',  
+    alignItems: 'center'
 
+  },
+  image:{
+    height: width/5,
+    width: width/5,
+    margin: 10,
   }
-
 });
 
 

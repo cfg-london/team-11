@@ -45,7 +45,7 @@ export default class Countries extends React.Component {
  backgroundColour= (language) => {
     if(this.state.language == language){
       return({
-        backgroundColor: '#000000',
+        backgroundColor: '#FF8E00',
         flex:1,
         borderColor: '#92979B',
         borderWidth: 0.5
@@ -56,7 +56,7 @@ export default class Countries extends React.Component {
         backgroundColor: '#FFFFFF',
         flex:1,
         borderColor: '#92979B',
-        borderWidth: 0.5
+        borderWidth: 0.5,
       });
     }
   }
@@ -71,47 +71,47 @@ export default class Countries extends React.Component {
     return (
       <View style={styles.footerButtonsRow}>
       <ScrollView horizontal>
-          <TouchableHighlight style={this.backgroundColour("en")} onPress={() => this.setLanguage("en")}>
+          <TouchableHighlight underlayColor={'#FFF'} style={this.backgroundColour("en")} onPress={() => this.setLanguage("en")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇬🇧</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={this.backgroundColour("bn")} onPress={() => this.setLanguage("bn")}>
+          <TouchableHighlight  underlayColor={'#FFF'} style={this.backgroundColour("bn")} onPress={() => this.setLanguage("bn")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇧🇩</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={this.backgroundColour("es")} onPress={() => this.setLanguage("es")}>
+          <TouchableHighlight  underlayColor={'#FFF'} style={this.backgroundColour("es")} onPress={() => this.setLanguage("es")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇪🇸</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={this.backgroundColour("fr")} onPress={() => this.setLanguage("fr")}>
+          <TouchableHighlight  underlayColor={'#FFF'} style={this.backgroundColour("fr")} onPress={() => this.setLanguage("fr")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇫🇷</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={this.backgroundColour("hi")} onPress={() => this.setLanguage("hi")}>
+          <TouchableHighlight  underlayColor={'#FFF'} style={this.backgroundColour("hi")} onPress={() => this.setLanguage("hi")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇮🇳</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={this.backgroundColour("so")} onPress={() => this.setLanguage("so")}>
+          <TouchableHighlight  underlayColor={'#FFF'} style={this.backgroundColour("so")} onPress={() => this.setLanguage("so")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇸🇴</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={this.backgroundColour("pl")} onPress={() => this.setLanguage("pl")}>
+          <TouchableHighlight  underlayColor={'#FFF'} style={this.backgroundColour("pl")} onPress={() => this.setLanguage("pl")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇵🇱</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={this.backgroundColour("zh-TW")} onPress={() => this.setLanguage("zh-TW")}>
+          <TouchableHighlight  underlayColor={'#FFF'} style={this.backgroundColour("zh-TW")} onPress={() => this.setLanguage("zh-TW")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇨🇳</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={this.backgroundColour("de")} onPress={() => this.setLanguage("de")}>
+          <TouchableHighlight  underlayColor={'#FFF'} style={this.backgroundColour("de")} onPress={() => this.setLanguage("de")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇩🇪</Text>
             </View>
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   footerButtonText: {
     color: '#FFFFFF',
     fontWeight: 'bold',
-    fontSize: 55,
+    fontSize: 48,
   },
 
 

@@ -1,9 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableHighlight, AsyncStorage } from 'react-native';
+import { StyleSheet, View, Text, TouchableHighlight, AsyncStorage, Dimensions } from 'react-native';
 
 import {
   StackNavigator,
 } from 'react-navigation';
+
+const {width, height}= Dimensions.get("window");
+
+
+import { Button } from 'react-native-elements';
+
 
 export default class SubCategory extends React.Component {
 
@@ -14,14 +20,46 @@ export default class SubCategory extends React.Component {
  getTitle(){
     var id=this.props.id;
     var one=['Falls', 'Medication or Prescription issues', 'Getting to your GP or Hospital', 'treatment', 'flu jabs' ,'Community nursing','Physio', 'osteopathy and chiropody','Falls','Alarms', 'Housing adaptations'];
-    var two=['yeee'];
-    var three=['lit'];
-    var four=['asdf'];
-    var five=['asdff'];
-    var six=['mmememe'];
-    var seven=['i want to die'];
-    var eight=['asdfasdfjkladfjl'];
-    var nine=['memes', 'poop'];
+    var two=["Housing"
+,"Employment"
+,"Welfare Benefits"
+,"Consumer  (phones, shops, internet providers, TV licence, Gas, Electric, Water etc )"
+,"Immigration"
+,"Scams and Rogue Traders"]
+    var three=["Debt (General)"
+,"Credit Card arrears or bank charges"
+,"Council Tax Arrears"
+,"Attendance Allowance or Personal Independence Payments"
+,"Personal Budgets or Direct Payments (Council or NHS)"
+,"Universal Credit"
+,"Housing Benefit"
+,"Pensions"
+,"Winter Fuel Payment"]
+    var four=["Making a will"
+,"Planning and paying for funerals"
+,"Equity release"
+,"Paying for care"];
+    var five=["Cleaning"
+,"Preparing meals"
+,"Medication"
+,"Bathing and Washing"
+,"Shopping"
+,"Repairs"
+,"Nuisance neighbours"
+,"Homelessness"
+,"Adaptations – Ramps, lifts, rails, lights, shower/bath"];
+    var six=["Taxi card scheme"
+,"Blue Badge"
+,"Dial a Ride"
+,"Mobility scooters or aids"
+,"Travel Training"]
+    var seven=['Lonliness'];
+    var eight=['Crisis'];
+    var nine=["Understanding letters or forms"
+,"Filling in forms"
+,"Making appointments"
+,"Helping you communicate with professionals (social worker, housing officer etc )"
+,"Accompanying you to important"]
     if(id==1)
       return one;
     if(id==2)
@@ -59,11 +97,18 @@ export default class SubCategory extends React.Component {
     var x=[];
     for(i=0; i<titles.length; i++){
       var title = titles[i];
-    x.push( <TouchableHighlight style={styles.container} onPress={() => this.setCategory(title)} key={i}>
-      <View style={styles.container}>
-      <Text style={styles.textItem}>{titles[i]}</Text>
-      </View>
-    </TouchableHighlight>);
+      x.push(<Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>)
+    x.push( 
+        <Button
+          key={i}
+          style={styles.button}
+          backgroundColor='#FF8E00'
+          borderRadius={20}
+          large
+          onPress={() => this.setCategory(title)}
+          title={title}
+        />
+    );
   }
     return x;
   }
@@ -83,7 +128,7 @@ const styles = StyleSheet.create({
    container: {
     flexDirection: 'row',
     alignItems: 'center',
-    flex:1
+    flex:1,
    },
 
   image: {
@@ -100,7 +145,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#000',  
 
-  }
+  },
+
+  button:{
+    margin:10,
+    padding: 10,
+    width: width*0.75,
+  },
+
 
 });
 

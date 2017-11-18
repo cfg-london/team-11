@@ -4,11 +4,10 @@ import {
     Text,
     TextInput,
     View,
-    Button,
     StyleSheet,
     AsyncStorage
   } from 'react-native';
-
+import { Button } from 'react-native-elements';
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -20,6 +19,14 @@ import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-
 
 export default class Overview extends React.Component {
      
+    static navigationOptions = ({ navigation, screenProps }) => ({
+      headerTitle: "Overview",
+      headerStyle: {
+        backgroundColor: '#FF8E00'
+      },
+      headerTintColor: '#FFFFFF',
+      /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
+  });
     constructor(props) {
       super(props);
 
@@ -29,6 +36,7 @@ export default class Overview extends React.Component {
     }
     Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
     this.getUrgency();
+    this.getRefereeID();
     this.getName();
     this.getAddress();
     this.getPhone();
@@ -48,6 +56,17 @@ export default class Overview extends React.Component {
         var urgency = await AsyncStorage.getItem('urgency');
         this.setState({
           urgency: urgency,
+        });
+      } catch (error) {
+        // Error saving data
+      }
+    }
+
+    async getRefereeID(){
+      try {
+        var refereeID = await AsyncStorage.getItem('refereeID');
+        this.setState({
+          refereeID: refereeID,
         });
       } catch (error) {
         // Error saving data
@@ -108,25 +127,104 @@ export default class Overview extends React.Component {
         // Error saving data
       }
     }
+
+
+    sendData() {
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = async(e) => {
+        if (request.readyState !== 4) {
+
+          return;
+        }
+        // Checks if the data has been found
+        if (request.status === 200) {
+
+        } else {
+          console.warn('Data not found');
+          console.warn(request.status);
+        }
+      };
+      console.log(this.state.name);
+      console.log(this.state.phone);
+      console.log(this.state.address);
+      console.log(this.state.urgency);
+      //console.log(this.state.type);
+      console.log(encodeURI('http://138.68.150.49/api/reference?name=' + encodeURIComponent(this.state.name) + '&phone=' + encodeURIComponent(this.state.phone) + '&address=' + encodeURIComponent(this.state.address) + '&urgency=' + encodeURIComponent(Boolean(this.state.urgency))+ '&type=' + encodeURIComponent(this.state.category)  + '&referee_id=' + encodeURIComponent(this.state.refereeID) + '&notes=' + encodeURIComponent(this.state.notes)));
+      request.open('POST', encodeURI('http://138.68.150.49/api/reference?name=' + encodeURIComponent(this.state.name) + '&phone=' + encodeURIComponent(this.state.phone) + '&address=' + encodeURIComponent(this.state.address) + '&urgency=' + encodeURIComponent((this.state.urgency)) + '&type=' + encodeURIComponent(this.state.category)  + '&referee_id=' + encodeURIComponent(this.state.refereeID) + '&notes=' + encodeURIComponent(this.state.notes)));
+      request.setRequestHeader('content-type', 'application/x-www-form-urlencoded');        
+      request.send();
+
+  }
+
+  async submit() {
+    this.sendData();
+    try {
+      await AsyncStorage.removeItem('name');
+      await AsyncStorage.removeItem('urgency');
+      await AsyncStorage.removeItem('phone');
+      await AsyncStorage.removeItem('address');
+      await AsyncStorage.removeItem('type');
+      await AsyncStorage.removeItem('notes');
+    } catch (error) {
+      // Error saving data
+    }
+
+    this.props.navigation.navigate('Home');
+  }
+
+  async addAnother() {
+    this.sendData();
+    try {
+      await AsyncStorage.removeItem('name');
+      await AsyncStorage.removeItem('urgency');
+      await AsyncStorage.removeItem('phone');
+      await AsyncStorage.removeItem('address');
+    } catch (error) {
+      // Error saving data
+    }
+
+    this.props.navigation.navigate('Category');
+  }
+
+  getUrgency(){
+    if(this.state.urgency==1){
+      return "URGENT"
+    } else{
+      return "Non-Urgent"
+    }
+  }
+
     render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
-        <PowerTranslator style={{fontSize: 27}} text={'Overview'} />
-        <PowerTranslator text={this.state.urgency} />
-        <PowerTranslator text={'Name:' + this.state.name} />
-        <PowerTranslator text={this.state.address} />
-        <PowerTranslator text={this.state.phone} />
-        <PowerTranslator text={this.state.category} />
-        <PowerTranslator text={this.state.notes} />
+        <Text style={{fontSize: 22, fontWeight:'bold', color: '#R00'}} >{this.getUrgency()} </Text>
+        <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Name:'} />
+        <Text style={styles.text}>{this.state.name}</Text>
+        <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Address:'} />
+        <Text style={styles.text}>{this.state.address}</Text>
+        <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Phone no:'} />
+        <Text style={styles.text}>{this.state.phone}</Text>
+        <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Category:'} />
+        <Text style={styles.text}>{this.state.category}</Text>
+        <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Notes:'} />
+        <Text style={styles.text}>{this.state.notes}</Text>
+        <Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>
         <Button 
-          onPress={()=> navigate('Consent')}
+          onPress={()=> this.submit()}
           title="Sumbit"
+          backgroundColor='#FF8E00'
+          borderRadius={20}
+          large
         />
+        <Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>
         <Button 
-          onPress={()=> navigate('Category')}
+          onPress={()=> this.addAnother()}
           title="Add another"
+          backgroundColor='#FF8E00'
+          borderRadius={20}
+          large
         />
       </ScrollView>   
       <Countries onClick={this.setLanguage.bind(this)}/>
@@ -144,5 +242,8 @@ const styles = StyleSheet.create({
   input:{
     fontSize: 20,
     height: 50,
+  },
+  text:{
+    fontSize: 18,
   }
 });

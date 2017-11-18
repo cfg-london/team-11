@@ -5,7 +5,8 @@ import {
     TextInput,
     View,
     Button,
-    StyleSheet
+    StyleSheet,
+    FlatList
   } from 'react-native';
 
 import CategoryItem from './CategoryItem.js'; 
@@ -16,6 +17,15 @@ import {
 
 
 export default class Category extends React.Component {
+
+  static navigationOptions = ({ navigation, screenProps }) => ({
+      headerTitle: "What type help do they need?",
+      headerStyle: {
+        backgroundColor: '#FF8E00'
+      },
+      headerTintColor: '#FFFFFF',
+      /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
+  });
 
   constructor(props) {
     super(props);
@@ -35,28 +45,22 @@ export default class Category extends React.Component {
     const { navigate } = this.props.navigation;
     if(this.state.first){
     return (
-      <ScrollView style={{padding: 20}}>
-        <Text style={{fontSize: 27}}>
-          Pick a category
-        </Text>
-          <CategoryItem id={1} func={this.switchState.bind(this)} />
-          <CategoryItem id={2} func={this.switchState.bind(this)} />
-          <CategoryItem id={3} func={this.switchState.bind(this)} />
-          <CategoryItem id={4} func={this.switchState.bind(this)} />
-          <CategoryItem id={5} func={this.switchState.bind(this)} />
-          <CategoryItem id={6} func={this.switchState.bind(this)} />
-          <CategoryItem id={7} func={this.switchState.bind(this)} />
-          <CategoryItem id={8} func={this.switchState.bind(this)} />
-          <CategoryItem id={9} func={this.switchState.bind(this)} />
-      </ScrollView>      
+      <View style={styles.container}>
+
+      <FlatList style={{padding: 0}}
+          data={[{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}, {id: 6}, {id: 7}, {id: 8}, {id: 9}]}
+          renderItem={({item}) => (<CategoryItem id={item.id} func={this.switchState.bind(this)} />) }
+          keyExtractor={(item) => item.id}
+          numColumns={3}
+      />
+      </View>   
     )
   }else{
-    return(
-    <ScrollView style={{padding: 20}}>
-        <Text style={{fontSize: 27}}>
-          Pick a category
-        </Text>
+ return(
+    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
           <SubCategory id={this.state.sub} movePage={() => navigate('Notes')}/>
+      </View>
       </ScrollView>      
 
       )
@@ -66,10 +70,11 @@ export default class Category extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+  },
+  inner:{
+    margin:10,
   },
   input:{
     fontSize: 20,
