@@ -5,7 +5,8 @@ import {
     TextInput,
     View,
     Button,
-    StyleSheet
+    StyleSheet,
+    AsyncStorage
   } from 'react-native';
 
 import {
@@ -36,7 +37,25 @@ export default class Contact extends React.Component {
       Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',language);
       this.setState({
         language: language,
+        address: "",
       });
+    }
+
+    async setDetails() {
+      if(this.state.address!="" && (this.state.phone)!=""){
+      try {
+        await AsyncStorage.setItem('address', "" + (this.state.address));
+        await AsyncStorage.setItem('phone', "" + (this.state.phone));
+        this.props.navigation.navigate('Category');
+      } catch (error) {
+        // Error saving data
+      }
+      }else{
+        alert('Please fill in all fields!')
+      }
+
+      
+
     }
 
 
@@ -47,13 +66,13 @@ export default class Contact extends React.Component {
         <ScrollView style={{padding: 20}}>
         <PowerTranslator style={{fontSize: 27}} text={'Details :'} />
         <PowerTranslator text={'Address'} />
-          <TextInput placeholder='Address' style={styles.input} />
-                  <PowerTranslator text={'Phone'} />
-          <TextInput placeholder='Phone' style={styles.input} />
+          <TextInput placeholder='Address' onChangeText={(address) => this.setState({address})} style={styles.input} />
+          <PowerTranslator text={'Phone'} />
+          <TextInput placeholder='Phone'  keyboardType={'phone-pad'} onChangeText={(phone) => this.setState({phone})} style={styles.input} />
           <View style={{margin:7}} />
           <Button 
             onPress={() =>
-            navigate('Category')}
+            this.setDetails()}
             title="Sumbit"
           />
         </ScrollView>    
