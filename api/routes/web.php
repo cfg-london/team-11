@@ -17,3 +17,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'ReferenceController@index')->name('home');
+
+Route::get('/archives', 'ArchiveController@index')->name('archives');
+

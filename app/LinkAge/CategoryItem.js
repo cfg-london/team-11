@@ -18,34 +18,91 @@ export default class CategoryItem extends React.Component {
     if(id==3)
       return 'Money';
     if(id==4)
-      return 'Later Life';
+      return 'Later\n Life';
     if(id==5)
       return 'Home Issues';
     if(id==6)
-      return 'Out and About';
+      return 'Out and\nAbout';
     if(id==7)
       return 'Lonliness';
     if(id==8)
       return 'Crisis';
     if(id==9)
-      return 'Practical Support';
+      return 'Practical\n Support';
     return 'sub category'
   }
 
 
   getImage(){
+    var id=this.props.id;
+    if(id==1)
+      return (          
+        <Image
+          style={styles.image}
+          source={require('./1.png')}
+        />);
+    if(id==2){
+      return (          
+        <Image
+          style={styles.image}
+          source={require('./2.png')}
+        />);
+    }
+    if(id==3)
+            return (          
+        <Image
+          style={styles.image}
+          source={require('./3.png')}
+        />);
+    if(id==4)
+            return (          
+        <Image
+          style={styles.image}
+          source={require('./4.png')}
+        />);
+    if(id==5)
+            return (          
+        <Image
+          style={styles.image}
+          source={require('./5.png')}
+        />);
+    if(id==6)
+            return (          
+        <Image
+          style={styles.image}
+          source={require('./6.png')}
+        />);
+    if(id==7)
+            return (          
+        <Image
+          style={styles.image}
+          source={require('./7.png')}
+        />);
+    if(id==8)
+            return (          
+        <Image
+          style={styles.image}
+          source={require('./8.png')}
+        />);
+    if(id==9)
+            return (          
+        <Image
+          style={styles.image}
+          source={require('./9.png')}
+        />);
+
+
 
   }
 
 render(){
   var id=(this.props.id);
+  var file="'./"+id+".png/'";
+  console.log(file);
   return(
       <TouchableHighlight style={styles.container} onPress={()=>this.props.func(id)}>
         <View style={styles.container} >
-          <Image
-          style={styles.image}
-          source={require('./logo.jpg')}
-        />
+          {this.getImage()}
           <Text style={styles.textItem}>{this.getTitle()}</Text>
         </View>
       </TouchableHighlight>
@@ -63,7 +120,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: '#FFFFFF',
     borderWidth: 1,
-    height: height/4,
+    height: height/3.5,
     width: width / 3,
     borderRadius:10,
   },
@@ -79,9 +136,10 @@ const styles = StyleSheet.create({
   textItem: {
     flex:3, 
     padding:20,
-    fontSize: 20,
+    fontSize: 14,
     color: '#000',  
-    alignItems: 'center'
+    alignItems: 'center',
+    textAlign: 'center',
 
   },
   image:{
