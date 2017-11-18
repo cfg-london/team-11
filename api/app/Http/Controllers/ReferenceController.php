@@ -16,7 +16,7 @@ class ReferenceController extends Controller
      */
     public function index()
     {
-        return Reference::all();
+        return json_encode(Reference::all());
     }
 
     /**
@@ -46,7 +46,7 @@ class ReferenceController extends Controller
         $reference->referee_id = $request->referee_id;
         $reference->notes = $request->notes;
         $reference->save();
-        return $reference;
+        return json_encode($reference);
     }
 
     /**
@@ -57,7 +57,7 @@ class ReferenceController extends Controller
      */
     public function show(Reference $reference)
     {
-        return $reference;
+        return json_encode($reference);
     }
 
     /**
@@ -90,7 +90,7 @@ class ReferenceController extends Controller
             'notes' => $request->notes,
         ]);
         $reference->save();
-        return $reference;
+        return json_encode($reference);
     }
 
     /**
@@ -105,6 +105,6 @@ class ReferenceController extends Controller
         $archive = ArchiveController::store($reference);
 
         $reference->delete();
-        return $archive;
+        return json_encode($archive);
     }
 }
