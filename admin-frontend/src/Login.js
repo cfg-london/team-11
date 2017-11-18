@@ -44,24 +44,19 @@ export default class Login extends React.Component {
 	getBody = () => {
 		if (this.state.login) {
 			return (
-				<div>
-					<div>Username</div>
-	  				<textarea className={css(styles.textArea)} onChange={(e) => this.props.changeUser(e)}/>
-	  				<div>Password</div>
-	  				<textarea className={css(styles.textArea)} onChange={(e) => this.props.changePass(e)}/>
+				<div className={css(styles.centralFlex)}>
+	  				<input placeholder="Username" className={css(styles.textArea)} onChange={(e) => this.props.changeUser(e)}/>
+	  				<input type="password" placeholder="Password" className={css(styles.textArea)} onChange={(e) => this.props.changePass(e)}/>
 	  				<button onClick={() => this.props.changeLogin()}>Login</button>
 	  			</div>
 			);
 		} else {
 			return (
-				<div>
+				<div className={css(styles.centralFlex)}>
 
-					<div>Username</div>
-					<textarea onChange={e => this.setState({username: e.target.value})} className={css(styles.textarea)}></textarea>
-					<div>Password</div>
-					<textarea onChange={e => this.setState({password: e.target.value})} className={css(styles.textarea)}></textarea>
-					<div>Confirm Password</div>
-					<textarea onChange={e => this.setState({cpassword: e.target.value})} className={css(styles.textarea)}></textarea>
+					<input placeholder="Username" onChange={e => this.setState({username: e.target.value})} className={css(styles.textarea)} />
+					<input type="password" placeholder="Password" onChange={e => this.setState({password: e.target.value})} className={css(styles.textarea)} />
+					<input type="password" placeholder="Reenter password" onChange={e => this.setState({cpassword: e.target.value})} className={css(styles.textarea)} />
 					<button onClick={() => this.registerAccount()}>Register a new account</button>
 
 
@@ -73,8 +68,6 @@ export default class Login extends React.Component {
 
 	render() {
 
-		console.log(this.state.login);
-
 		return (
 
 			<div className={css(styles.loginBox, styles.centralFlex)}>
@@ -83,6 +76,7 @@ export default class Login extends React.Component {
 					<div onClick={() => this.loginTrue()} className={css(styles.choice)}>Login</div>
 					<div onClick={() => this.loginFalse()} className={css(styles.choice)}>Register</div>
 				</div>
+
 
   				{this.getBody()}
       		</div>
@@ -102,9 +96,9 @@ const styles = StyleSheet.create({
 	},
 	loginBox: {
 		marginTop: 100,
-		padding: 65,
 		border: '3px solid black',
-
+		width: 300,
+		height: 230,
 	},
 	textArea: {
 		resize: 'none',
@@ -113,10 +107,15 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		justifyContext: 'center',
 		alignItems: 'center',
+		marginTop: 10,
+		marginBottom: 10,
 	},
 	choice: {
 		marginRight: 10,
 		marginLeft: 10,
+		":active": {
+			fontSize: 20,
+		}
 	},
 	textarea: {
 		resize: 'none',
