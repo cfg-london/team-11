@@ -20,3 +20,10 @@ Route::get('/home', 'ReferenceController@index')->name('home');
 
 Route::get('/archives', 'ArchiveController@index')->name('archives');
 
+Route::post('/alert', 'SmsController@sendAll')->name('alert');
+
+Route::get('/alert', function () {
+    return view('alert');
+});
+
+

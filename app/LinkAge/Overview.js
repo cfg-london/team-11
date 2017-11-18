@@ -200,7 +200,7 @@ export default class Overview extends React.Component {
     return (
       <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
-        <Text style={{fontSize: 22, fontWeight:'bold', color: '#R00'}} >{this.getUrgency()} </Text>
+        <Text style={{fontSize: 22, fontWeight:'bold', color: 'red'}} >{this.getUrgency()} </Text>
         <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Name:'} />
         <Text style={styles.text}>{this.state.name}</Text>
         <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Address:'} />

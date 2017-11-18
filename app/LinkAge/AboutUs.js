@@ -78,7 +78,7 @@ export default class AboutUs extends React.Component {
         />
         <Text/>
         <PowerButton
-          style={styles.button}
+          buttonStyle={styles.button}
           backgroundColor='#FF8E00'
           borderRadius={20}
           margin={100}

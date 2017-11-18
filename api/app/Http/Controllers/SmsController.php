@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Referee;
+use Illuminate\Support\Facades\Input;
 
 require 'class-Clockwork.php';
 
 class SmsController extends Controller
 {
-    public function sendAll(Request $request) {
+    public function sendAll() {
         $API_KEY = "9bb7ecda7c0487520a5f1f5ca7c8c6f26c018fdc";
         $referees = Referee::all();
-        $message = $request->message;
+        $input = Input::only('message');
+        $message = $input['message'];
         foreach ($referees as $referee) {
             $url = "https://api.clockworksms.com/http/send.aspx?";
             $phone = $referee->phone;
@@ -21,5 +23,6 @@ class SmsController extends Controller
             //dd($xd);
             $json = json_decode(file_get_contents($xd), true);
         }
+        return "Sent to: " . $referees->count();
     }
 }
