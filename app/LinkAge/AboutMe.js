@@ -4,11 +4,15 @@ import {
     Text,
     TextInput,
     View,
-    Button,
     StyleSheet,
     AsyncStorage,
     Picker,
   } from 'react-native';
+
+
+
+
+import { Button } from 'react-native-elements'
 
 import {
   StackNavigator,
@@ -19,9 +23,17 @@ import Countries from './Countries';
 
 import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
 
-const navigationOptions = {header: null }
-
 export default class AboutMe extends React.Component {
+
+  static navigationOptions = ({ navigation, screenProps }) => ({
+      headerTitle: "Tell us about yourself",
+      headerStyle: {
+        backgroundColor: '#FF8E00'
+      },
+      headerTintColor: '#FFFFFF',
+      
+  });
+
 
     constructor(props) {
       super(props);
@@ -108,11 +120,10 @@ export default class AboutMe extends React.Component {
     return (
       <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
-        <PowerTranslator style={{fontSize: 27}} text={'Tell us about you'} />
-        <PowerTranslator text={'Name'} />
+        <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Name'} />
         <TextInput placeholder='Name' onChangeText={(name) => this.setState({name})} style={styles.input} />
-        <PowerTranslator text={'Profession'} />
-        <Picker selectedValue = {this.state.profession} onValueChange = {this.update.bind(this)}>
+        <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Profession'} />
+        <Picker style={{fontSize: 20}} selectedValue = {this.state.profession} onValueChange = {this.update.bind(this)}>
           <Picker.Item label = "Police" value = "Police" />
           <Picker.Item label = "Fire and Rescue" value = "Fire and Rescue" />
           <Picker.Item label = "Ambulance" value = "Ambulance" />
@@ -124,13 +135,13 @@ export default class AboutMe extends React.Component {
           <Picker.Item label = "Friend, family or neighbour" value = "Friend, family or neighbour" />
           <Picker.Item label = "Other" value = "Other" />
         </Picker>        
-
-
-
         <View style={{margin:7}} />
         <Button 
           onPress={()=> this.next()}
-          title="Sumbit"
+          title="Submit"
+          backgroundColor='#FF8E00'
+          borderRadius={20}
+          large
         />
       </ScrollView>  
       <Countries onClick={this.setLanguage.bind(this)}/>
@@ -148,5 +159,11 @@ const styles = StyleSheet.create({
   input:{
     fontSize: 20,
     height: 50,
+  },
+  title:{
+    fontSize:40,
+  },
+  header:{
+    margin:20,
   }
 });
