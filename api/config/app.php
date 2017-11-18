@@ -167,6 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Stevebauman\EloquentTable\EloquentTableServiceProvider::class,
 
         /*
          * Application Service Providers...

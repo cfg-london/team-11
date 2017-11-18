@@ -15,6 +15,8 @@ class Reference extends Model
         'name','phone','address','urgency','type','referee_id','notes'
     ];
 
+    protected $table = 'references';
+
     protected $primaryKey = 'reference_id';
 
     /**

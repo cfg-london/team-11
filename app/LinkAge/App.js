@@ -14,7 +14,7 @@ import Overview from './Overview';
 
 {/*https://reactnavigation.org/docs/intro/*/}
 const Apps = StackNavigator({
-  AboutMe: { screen: AboutMe, },
+  AboutMe: { screen: AboutMe,},
   AboutUs: { screen: AboutUs },
   Category: { screen: Category },
   Consent: { screen: Consent },
@@ -23,7 +23,7 @@ const Apps = StackNavigator({
   Name: { screen: Name },
   Notes: { screen: Notes },
   Overview: { screen: Overview },
-},{ headerMode: 'none' }
+}
 );
 
 export default class App extends React.Component {
