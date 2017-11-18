@@ -38,7 +38,7 @@ export default class Notes extends React.Component {
     async setUrgency(){
       try {
         await AsyncStorage.setItem('notes', "" + this.state.notes);
-        this.props.navigation.navigate('Overview');
+        this.props.navigation.navigate('Consent');
       } catch (error) {
         // Error saving data
       }

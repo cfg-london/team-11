@@ -26,7 +26,7 @@ export default class AboutMe extends React.Component {
     this.state = {
       language: "en",
       name: "",
-      profession: "",
+      profession: "Police",
     }
     Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
 
@@ -67,18 +67,18 @@ export default class AboutMe extends React.Component {
         }
         // Checks if the data has been found
         if (request.status === 200) {
-          (JSON.parse(request.responseText));
+          console.log(JSON.parse(request.responseText));
           try {
-            await AsyncStorage.setItem('refereeID', JSON.parse(request.responseText).referee_id);
+            await AsyncStorage.setItem('refereeID', "" + JSON.parse(request.responseText).referee_id);
           } catch (error) {
-
+            console.warn(error);
           }
 
         } else {
           console.warn('Data not found');
         }
       };
-      request.open('POST', 'http://138.68.150.49/api/referee?name=' + this.state.name + '&profession=' + this.state.profession);
+      request.open('POST', 'http://138.68.150.49/api/referee?name=' + "this.state.name" + '&profession=' + "this.state.profession" + '&phone=' + "0");
       request.send();
 
   }
@@ -96,10 +96,6 @@ export default class AboutMe extends React.Component {
 
       }
     }
-
-    update(){
-      console.log(this.state.profession);
-    }
     
     render() {
     const { navigate } = this.props.navigation;
@@ -110,7 +106,7 @@ export default class AboutMe extends React.Component {
         <PowerTranslator text={'Name'} />
         <TextInput placeholder='Name' onChangeText={(name) => this.setState({name})} style={styles.input} />
         <PowerTranslator text={'Profession'} />
-        <Picker selectedValue = {this.state.profession} onValueChange = {this.update.bind(this)}>
+        <Picker selectedValue = {this.state.profession} onValueChange={(profession) => this.setState({profession})}>
           <Picker.Item label = "Police" value = "Police" />
           <Picker.Item label = "Fire and Rescue" value = "Fire and Rescue" />
           <Picker.Item label = "Ambulance" value = "Ambulance" />
@@ -122,6 +118,9 @@ export default class AboutMe extends React.Component {
           <Picker.Item label = "Friend, family or neighbour" value = "Friend, family or neighbour" />
           <Picker.Item label = "Other" value = "Other" />
         </Picker>        
+        <PowerTranslator text={'Phone'} />
+        <TextInput placeholder='Phone'  keyboardType={'phone-pad'} onChangeText={(phone) => this.setState({phone})} style={styles.input} />
+
 
 
 

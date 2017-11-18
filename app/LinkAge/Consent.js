@@ -45,7 +45,7 @@ export default class Consent extends React.Component {
         <PowerTranslator text={'Consent me plz'} />
 
         <Button 
-          onPress={()=> navigate('Home')}
+          onPress={()=> navigate('Overview')}
           title="Sumbit"
         />
       </ScrollView>   
