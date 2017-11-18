@@ -69,8 +69,8 @@ export default class Countries extends React.Component {
   render() {
   {/* Shows data is loading */}
     return (
-      <View>
-        <View style={styles.footerButtonsRow}>
+      <View style={styles.footerButtonsRow}>
+      <ScrollView horizontal>
           <TouchableHighlight style={this.backgroundColour("en")} onPress={() => this.setLanguage("en")}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>🇬🇧</Text>
@@ -91,12 +91,38 @@ export default class Countries extends React.Component {
               <Text style={styles.footerButtonText}>🇫🇷</Text>
             </View>
           </TouchableHighlight>
+          <TouchableHighlight style={this.backgroundColour("hi")} onPress={() => this.setLanguage("hi")}>
+            <View style={styles.footerButtonView}>
+              <Text style={styles.footerButtonText}>🇮🇳</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight style={this.backgroundColour("so")} onPress={() => this.setLanguage("so")}>
+            <View style={styles.footerButtonView}>
+              <Text style={styles.footerButtonText}>🇸🇴</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight style={this.backgroundColour("pl")} onPress={() => this.setLanguage("pl")}>
+            <View style={styles.footerButtonView}>
+              <Text style={styles.footerButtonText}>🇵🇱</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight style={this.backgroundColour("zh-TW")} onPress={() => this.setLanguage("zh-TW")}>
+            <View style={styles.footerButtonView}>
+              <Text style={styles.footerButtonText}>🇨🇳</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight style={this.backgroundColour("de")} onPress={() => this.setLanguage("de")}>
+            <View style={styles.footerButtonView}>
+              <Text style={styles.footerButtonText}>🇩🇪</Text>
+            </View>
+          </TouchableHighlight>
+
           <TouchableHighlight style={this.backgroundColour("poo")} onPress={() => this.clearStorage()}>
             <View style={styles.footerButtonView}>
               <Text style={styles.footerButtonText}>💩</Text>
             </View>
           </TouchableHighlight>
-        </View>
+        </ScrollView>
       </View>
     );
 
@@ -127,7 +153,7 @@ const styles = StyleSheet.create({
   footerButtonText: {
     color: '#FFFFFF',
     fontWeight: 'bold',
-    fontSize: 35,
+    fontSize: 55,
   },
 
 
