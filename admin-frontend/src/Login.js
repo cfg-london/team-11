@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
 	choice: {
 		marginRight: 10,
 		marginLeft: 10,
+		cursor: 'pointer',
 	},
 	registerBox: {
 		marginTop: 100,
