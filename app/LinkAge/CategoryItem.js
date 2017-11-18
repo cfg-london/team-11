@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, Text, TouchableHighlight, Dimensions } from 'react-native';
+
+const {width, height}= Dimensions.get("window");
 
 export default class CategoryItem extends React.Component {
 
@@ -38,11 +40,12 @@ export default class CategoryItem extends React.Component {
 render(){
   var id=(this.props.id);
   return(
-   <TouchableHighlight style={styles.container} onPress={()=>this.props.func(id)}>
-      <View style={styles.container}>
-      <Text style={styles.textItem}>{this.getTitle()}</Text>
-      </View>
-    </TouchableHighlight>
+      <TouchableHighlight style={styles.container} onPress={()=>this.props.func(id)}>
+        <View style={styles.container} >
+          <Text style={styles.textItem}>{this.getTitle()}</Text>
+        </View>
+      </TouchableHighlight>
+
     )
 }
 
@@ -50,11 +53,14 @@ render(){
 }
 
 const styles = StyleSheet.create({
-   container: {
-    flexDirection: 'row',
+  container: {
+    flexDirection: 'column',
+    backgroundColor: '#F0EDED',
     alignItems: 'center',
-    flex:1
-   },
+    borderColor: '#FFFFFF',
+    borderWidth: 1,
+    width: width / 3,
+  },
 
   image: {
     padding:20,
