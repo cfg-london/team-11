@@ -3,7 +3,6 @@ import {StyleSheet, css} from 'aphrodite';
 import NavBar from './NavBar';
 import Login from './Login';
 import View from './View';
-import Register from './Register';
 
 
 export default class App extends React.Component {
@@ -15,9 +14,6 @@ export default class App extends React.Component {
 			register: false,
 			username: '',
 			password: '',
-			bnt: [
-				{name: 'Register', func: this.changeRegister}
-			],
 		};
 	}
 
@@ -61,7 +57,6 @@ export default class App extends React.Component {
       				title={"Toynbee Hall"}
       				loggedIn={this.state.loggedIn}
       				logout={this.changeLogin}
-      				elements={this.state.bnt}
       			/>
 
       			{this.getSubBody()}
