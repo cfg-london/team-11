@@ -11,7 +11,6 @@ export default class App extends React.Component {
 		super();
 		this.state = {
 			loggedIn: false,
-			register: false,
 			username: '',
 			password: '',
 		};

@@ -21,10 +21,23 @@ export default class Login extends React.Component {
 		this.setState({login: false});
 	}
 
-	registerAccount = () => {
+	checkAccount = () => {
+		var xhr = new XMLHttpRequest();
+		var data = "user_name" + encodeURIComponent(this.state.username) + "&password=" + encodeURIComponent(this.state.password);
 
-		console.log(this.state.username);
-		console.log(this.state.password);
+		xhr.addEventListener("readystatechange", () => {
+			if (this.readyState === 4 || this.readyState === 200) {
+				console.log(this.responseText);
+			} else {
+				console.log(this.responseText);
+			}
+		});
+		xhr.open("POST", "http://138.68.150.49/api/login");
+		xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+		xhr.send(data);
+	}
+
+	registerAccount = () => {
 
 		var xhr = new XMLHttpRequest();
         var data = "user_name=" + encodeURIComponent(this.state.username) + "&password=" + encodeURIComponent(this.state.password) + "&c_password=" + encodeURIComponent(this.state.cpassword);
@@ -50,7 +63,7 @@ export default class Login extends React.Component {
 		  				<input type="password" placeholder="Password" className={css(styles.textArea)} onChange={(e) => this.props.changePass(e)}/>
 		  			</div>
 	  				
-	  				<button className={css(styles.signinButton)} onClick={() => this.props.changeLogin()}>Sign in</button>
+	  				<button className={css(styles.signinButton)} onClick={() => this.checkAccount()}>Sign in</button>
 	  			</div>
 			);
 		} else {
@@ -104,12 +117,14 @@ const styles = StyleSheet.create({
 		marginTop: 100,
 		width: 300,
 		height: 230,
+		border: '1px solid #d1d3d6',
+		borderRadius: 3
 	},
 	textArea: {
 		resize: 'none',
-		height: 40,
-		width: '95%',
-		border: 'none',
+		height: 37,
+		width: 290,
+		border: '0.5px solid #d1d3d6',
 		borderRadius: 5,
 	},
 	horizontal: {
