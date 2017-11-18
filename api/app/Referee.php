@@ -12,7 +12,7 @@ class Referee extends Model
      * @var array
      */
     protected $fillable = [
-        'name','profession'
+        'name','phone','profession'
     ];
 
     protected $primaryKey = 'referee_id';
