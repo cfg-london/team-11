@@ -45,19 +45,25 @@ export default class Login extends React.Component {
 		if (this.state.login) {
 			return (
 				<div className={css(styles.centralFlex)}>
-	  				<input placeholder="Username" className={css(styles.textArea)} onChange={(e) => this.props.changeUser(e)}/>
-	  				<input type="password" placeholder="Password" className={css(styles.textArea)} onChange={(e) => this.props.changePass(e)}/>
-	  				<button onClick={() => this.props.changeLogin()}>Login</button>
+					<div className={css(styles.middle, styles.centralFlex)}>
+		  				<input placeholder="Username" className={css(styles.textArea)} onChange={(e) => this.props.changeUser(e)}/>
+		  				<input type="password" placeholder="Password" className={css(styles.textArea)} onChange={(e) => this.props.changePass(e)}/>
+		  			</div>
+	  				
+	  				<button className={css(styles.signinButton)} onClick={() => this.props.changeLogin()}>Sign in</button>
 	  			</div>
 			);
 		} else {
 			return (
 				<div className={css(styles.centralFlex)}>
 
-					<input placeholder="Username" onChange={e => this.setState({username: e.target.value})} className={css(styles.textarea)} />
-					<input type="password" placeholder="Password" onChange={e => this.setState({password: e.target.value})} className={css(styles.textarea)} />
-					<input type="password" placeholder="Reenter password" onChange={e => this.setState({cpassword: e.target.value})} className={css(styles.textarea)} />
-					<button onClick={() => this.registerAccount()}>Register a new account</button>
+					<div className={css(styles.middle, styles.centralFlex)}>
+						<input placeholder="Username" onChange={e => this.setState({username: e.target.value})} className={css(styles.textArea)} />
+						<input type="password" placeholder="Password" onChange={e => this.setState({password: e.target.value})} className={css(styles.textArea)} />
+						<input type="password" placeholder="Reenter password" onChange={e => this.setState({cpassword: e.target.value})} className={css(styles.textArea)} />
+					</div>
+
+					<button className={css(styles.registerButton)} onClick={() => this.registerAccount()}>Register Now</button>
 
 
 
@@ -96,12 +102,15 @@ const styles = StyleSheet.create({
 	},
 	loginBox: {
 		marginTop: 100,
-		border: '3px solid black',
 		width: 300,
 		height: 230,
 	},
 	textArea: {
 		resize: 'none',
+		height: 40,
+		width: '95%',
+		border: 'none',
+		borderRadius: 5,
 	},
 	horizontal: {
 		display: 'flex',
@@ -113,12 +122,6 @@ const styles = StyleSheet.create({
 	choice: {
 		marginRight: 10,
 		marginLeft: 10,
-		":active": {
-			fontSize: 20,
-		}
-	},
-	textarea: {
-		resize: 'none',
 	},
 	registerBox: {
 		marginTop: 100,
@@ -126,5 +129,26 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
+	},
+	signinButton: {
+		backgroundColor: 'green',
+		color: 'white',
+		border: 'none',
+		borderRadius: 5,
+		marginTop: 10,
+		width: 100,
+		height: 35,
+	},
+	registerButton: {
+		backgroundColor: 'blue',
+		color: 'white',
+		border: 'none',
+		borderRadius: 5,
+		marginTop: 10,
+		width: 100,
+		height: 35,
+	},
+	middle: {
+		height: 145,
 	}
 });
