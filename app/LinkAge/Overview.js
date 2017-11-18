@@ -186,17 +186,31 @@ export default class Overview extends React.Component {
     this.props.navigation.navigate('Category');
   }
 
+  getUrgency(){
+    if(this.state.urgency==1){
+      return "URGENT"
+    } else{
+      return "Non-Urgent"
+    }
+  }
+
     render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
-        <PowerTranslator text={this.state.urgency} />
-        <PowerTranslator text={'Name:' + this.state.name} />
-        <PowerTranslator text={this.state.address} />
-        <PowerTranslator text={this.state.phone} />
-        <PowerTranslator text={this.state.category} />
-        <PowerTranslator text={this.state.notes} />
+        <Text style={{fontSize: 22, fontWeight:'bold', color: '#R00'}} >{this.getUrgency()} </Text>
+        <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Name:'} />
+        <Text style={styles.text}>{this.state.name}</Text>
+        <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Address:'} />
+        <Text style={styles.text}>{this.state.address}</Text>
+        <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Phone no:'} />
+        <Text style={styles.text}>{this.state.phone}</Text>
+        <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Category:'} />
+        <Text style={styles.text}>{this.state.category}</Text>
+        <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Notes:'} />
+        <Text style={styles.text}>{this.state.notes}</Text>
+        <Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>
         <Button 
           onPress={()=> this.submit()}
           title="Sumbit"
@@ -228,5 +242,8 @@ const styles = StyleSheet.create({
   input:{
     fontSize: 20,
     height: 50,
+  },
+  text:{
+    fontSize: 18,
   }
 });
