@@ -23,6 +23,10 @@ export default class Login extends React.Component {
 	}
 
 	checkAccount = () => {
+		console.log("HERE");
+		console.log(this.state.username);
+		console.log(this.state.password);
+		
 		var xhr = new XMLHttpRequest();
 		var data = "user_name=" + encodeURIComponent(this.state.username) + "&password=" + encodeURIComponent(this.state.password);
 
@@ -42,7 +46,7 @@ export default class Login extends React.Component {
 
 		var xhr = new XMLHttpRequest();
         var data = "user_name=" + encodeURIComponent(this.state.username) + "&password=" + encodeURIComponent(this.state.password) + "&c_password=" + encodeURIComponent(this.state.cpassword);
-        xhr.addEventListener("readystatechange", function() {
+        xhr.addEventListener("readystatechange", () => {
             if (this.readyState === 4 || this.readyState === 200) {
                 console.log(this.responseText);
             } else if (this.readyState === 401) {
@@ -59,6 +63,7 @@ export default class Login extends React.Component {
 		if (this.state.login) {
 			return (
 				<div className={css(styles.centralFlex)}>
+
 					<div className={css(styles.middle, styles.centralFlex)}>
 		  				<input placeholder="Username" className={css(styles.textArea)} onChange={e => this.setState({username: e.target.value})}/>
 		  				<input type="password" placeholder="Password" className={css(styles.textArea)} onChange={e => this.setState({password: e.target.value})}/>
@@ -89,7 +94,8 @@ export default class Login extends React.Component {
 		return (
 
 			<div>
-				<img src={logo} className={css(styles.logo)} />
+				<img src={logo} className={css(styles.logo)}/>
+
 				<div className={css(styles.loginBox, styles.centralFlex)}>
 
 
