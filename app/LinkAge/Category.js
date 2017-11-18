@@ -18,6 +18,15 @@ import {
 
 export default class Category extends React.Component {
 
+  static navigationOptions = ({ navigation, screenProps }) => ({
+      headerTitle: "What type help do they need?",
+      headerStyle: {
+        backgroundColor: '#FF8E00'
+      },
+      headerTintColor: '#FFFFFF',
+      /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
+  });
+
   constructor(props) {
     super(props);
     this.state = {
@@ -37,9 +46,6 @@ export default class Category extends React.Component {
     if(this.state.first){
     return (
       <View style={styles.container}>
-        <Text style={{fontSize: 27}}>
-          Pick a category
-        </Text>
 
       <FlatList style={{padding: 0}}
           data={[{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}, {id: 6}, {id: 7}, {id: 8}, {id: 9}]}
@@ -52,9 +58,6 @@ export default class Category extends React.Component {
   }else{
     return(
     <ScrollView>
-        <Text style={{fontSize: 27}}>
-          Pick a category
-        </Text>
           <SubCategory id={this.state.sub} movePage={() => navigate('Notes')}/>
       </ScrollView>      
 
