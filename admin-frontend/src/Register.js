@@ -31,13 +31,6 @@ export default class Register extends React.Component {
         xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
         xhr.send(data);
 
-
-
-
-
-
-
-
 	}
 
 	render() {
