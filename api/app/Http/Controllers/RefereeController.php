@@ -39,7 +39,7 @@ class RefereeController extends Controller
         $referee->name = $request->name;
         $referee->profession = $request->profession ;
         $referee->save();
-        return $referee;
+        return json_encode($referee);
     }
 
     /**
