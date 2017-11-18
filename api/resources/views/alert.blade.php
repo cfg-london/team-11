@@ -8,11 +8,11 @@
                     <div class="panel-heading">Dashboard</div>
 
                     <div class="panel-body">
-
-                        <input type="text" class="form-control" id="message" name="message" value="Enter a message...">
-                        <br>
-                        <center><button type="submit" class="btn btn-primary">Submit</button></center>
-
+                        <form class="form-horizontal" method="post" action="/alert">
+                            <input type="text" class="form-control" id="message" name="message" value="Enter a message...">
+                            <br>
+                            <center><button type="submit" class="btn btn-primary">Submit</button></center>
+                        </form>
 
                     </div>
 
