@@ -25,4 +25,9 @@ class SmsController extends Controller
         }
         return "Sent to: " . $referees->count();
     }
+
+    public function sendOne() {
+        $referee = Referee::latest()->first();
+
+    }
 }

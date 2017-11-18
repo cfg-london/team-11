@@ -40,6 +40,15 @@ class RefereeController extends Controller
         $referee->phone = $request->phone;
         $referee->profession = $request->profession ;
         $referee->save();
+
+        $API_KEY = "9bb7ecda7c0487520a5f1f5ca7c8c6f26c018fdc";
+        $message = "Welcome to LinkAge+! We have stored your referral successfully. Thank you for looking out for your community <3";
+        $url = "https://api.clockworksms.com/http/send.aspx?";
+        $phone = $referee->phone;
+        $text = str_replace(" ", "+", $message);
+        $xd = $url . "key=" . $API_KEY . "&to=" . $phone .  "&content=" . $text;
+        $json = json_decode(file_get_contents($xd), true);
+
         return json_encode($referee);
     }
 
