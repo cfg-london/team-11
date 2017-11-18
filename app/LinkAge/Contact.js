@@ -61,7 +61,7 @@ export default class Contact extends React.Component {
         <PowerTranslator text={'Address'} />
           <TextInput placeholder='Address' onChangeText={(address) => this.setState({address})} style={styles.input} />
                   <PowerTranslator text={'Phone'} />
-          <TextInput placeholder='Phone' nChangeText={(phone) => this.setState({phone})} style={styles.input} />
+          <TextInput placeholder='Phone' onChangeText={(phone) => this.setState({phone})} style={styles.input} />
           <View style={{margin:7}} />
           <Button 
             onPress={() =>

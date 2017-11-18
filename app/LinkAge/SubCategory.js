@@ -1,5 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, Text, TouchableHighlight, AsyncStorage } from 'react-native';
+
+import {
+  StackNavigator,
+} from 'react-navigation';
 
 export default class SubCategory extends React.Component {
 
@@ -40,8 +44,10 @@ export default class SubCategory extends React.Component {
 
   async setCategory(title){
       try {
+        console.log(title);
         await AsyncStorage.setItem('category', "" + (title));
-        this.props.navigation.navigate('Notes');
+        console.log("hello");
+        this.props.movePage();
       } catch (error) {
         // Error saving data
       }
@@ -52,7 +58,8 @@ export default class SubCategory extends React.Component {
     var titles=this.getTitle();
     var x=[];
     for(i=0; i<titles.length; i++){
-    x.push( <TouchableHighlight style={styles.container} onPress={() => this.setCategory(titles[i])}>
+      var title = titles[i];
+    x.push( <TouchableHighlight style={styles.container} onPress={() => this.setCategory(title)} key={i}>
       <View style={styles.container}>
       <Text style={styles.textItem}>{titles[i]}</Text>
       </View>

@@ -5,7 +5,8 @@ import {
     TextInput,
     View,
     Button,
-    StyleSheet
+    StyleSheet,
+    AsyncStorage
   } from 'react-native';
 
 import {
@@ -21,11 +22,18 @@ export default class Overview extends React.Component {
      
     constructor(props) {
       super(props);
+
     this.state = {
       language: "en",
+      urgency: "-1",
     }
     Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
-
+    this.getUrgency();
+    this.getName();
+    this.getAddress();
+    this.getPhone();
+    this.getCategory();
+    this.getNotes();
     }
 
     setLanguage(language) {
@@ -35,28 +43,70 @@ export default class Overview extends React.Component {
       });
     }
  
-    getUrgency(){
-      return "Urgent af";
+    async getUrgency(){
+      try {
+        var urgency = await AsyncStorage.getItem('urgency');
+        this.setState({
+          urgency: urgency,
+        });
+      } catch (error) {
+        // Error saving data
+      }
     }
 
-    getName(){
-      return "Sean Jackson";
+    async getName(){
+      try {
+        var name = await AsyncStorage.getItem('name');
+        this.setState({
+          name: name,
+        });
+      } catch (error) {
+        // Error saving data
+      }
     }
 
-    getAddress(){
-      return "150 dab mansion"
+    async getAddress(){
+      try {
+        var address = await AsyncStorage.getItem('address');
+        this.setState({
+          address: address,
+        });
+      } catch (error) {
+        // Error saving data
+      }
     }
 
-    getPhone(){
-      return "420"
+    async getPhone(){
+      try {
+        var phone = await AsyncStorage.getItem('phone');
+        this.setState({
+          phone: phone,
+        });
+      } catch (error) {
+        // Error saving data
+      }
     }
 
-    getCategory(){
-      return "meme police"
+    async getCategory(){
+      try {
+        var category = await AsyncStorage.getItem('category');
+        this.setState({
+          category: category,
+        });
+      } catch (error) {
+        // Error saving data
+      }
     }
 
-    getNotes(){
-      return "notessssssssssssssssssss"
+    async getNotes(){
+      try {
+        var notes = await AsyncStorage.getItem('notes');
+        this.setState({
+          notes: notes,
+        });
+      } catch (error) {
+        // Error saving data
+      }
     }
     render() {
     const { navigate } = this.props.navigation;
@@ -64,12 +114,12 @@ export default class Overview extends React.Component {
       <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
         <PowerTranslator style={{fontSize: 27}} text={'Overview'} />
-        <PowerTranslator text={this.getUrgency()} />
-        <PowerTranslator text={'Name:' + this.getName()} />
-        <PowerTranslator text={this.getAddress()} />
-        <PowerTranslator text={this.getPhone()} />
-        <PowerTranslator text={this.getCategory()} />
-        <PowerTranslator text={this.getNotes()} />
+        <PowerTranslator text={this.state.urgency} />
+        <PowerTranslator text={'Name:' + this.state.name} />
+        <PowerTranslator text={this.state.address} />
+        <PowerTranslator text={this.state.phone} />
+        <PowerTranslator text={this.state.category} />
+        <PowerTranslator text={this.state.notes} />
         <Button 
           onPress={()=> navigate('Consent')}
           title="Sumbit"
