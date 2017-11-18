@@ -12,21 +12,46 @@ import {
   StackNavigator,
 } from 'react-navigation';
 
+import Countries from './Countries';
+
+
+import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
+
 export default class Consent extends React.Component {
+
+    constructor(props) {
+      super(props);
+    this.state = {
+      language: "en",
+    }
+    Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
+
+    }
+
+    setLanguage(language) {
+      Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',language);
+      this.setState({
+        language: language,
+      });
+    }
+
 
     render() {
     const { navigate } = this.props.navigation;
     return (
+      <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
-        <Text style={{fontSize: 27}}>
-          One last thing!
-        </Text>
-        <Text>Consent me plz</Text>
+        <PowerTranslator style={{fontSize: 27}} text={'One last thing!'} />
+        <PowerTranslator text={'Consent me plz'} />
+
         <Button 
           onPress={()=> navigate('Home')}
           title="Sumbit"
         />
-      </ScrollView>      
+      </ScrollView>   
+      <Countries onClick={this.setLanguage.bind(this)}/>
+      </View>
+   
     )
    }
 }
@@ -35,8 +60,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   input:{
     fontSize: 20,
