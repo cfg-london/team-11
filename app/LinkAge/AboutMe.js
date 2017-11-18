@@ -6,7 +6,8 @@ import {
     View,
     Button,
     StyleSheet,
-    AsyncStorage
+    AsyncStorage,
+    Picker,
   } from 'react-native';
 
 import {
@@ -39,9 +40,13 @@ export default class AboutMe extends React.Component {
     }
 
     next(){
+      if(this.state.name!=""){
       this.doStuff();
       this.sendData();  
       this.props.navigation.navigate('AboutUs');
+    }else{
+      alert("please give us a name!")
+    }
     }
 
    async doStuff () {
@@ -92,6 +97,9 @@ export default class AboutMe extends React.Component {
       }
     }
 
+    update(){
+      console.log(this.state.profession);
+    }
     
     render() {
     const { navigate } = this.props.navigation;
@@ -102,7 +110,21 @@ export default class AboutMe extends React.Component {
         <PowerTranslator text={'Name'} />
         <TextInput placeholder='Name' onChangeText={(name) => this.setState({name})} style={styles.input} />
         <PowerTranslator text={'Profession'} />
-        <TextInput placeholder='Profession' onChangeText={(profession) => this.setState({profession})} style={styles.input}/>
+        <Picker selectedValue = {this.state.profession} onValueChange = {this.update.bind(this)}>
+          <Picker.Item label = "Police" value = "Police" />
+          <Picker.Item label = "Fire and Rescue" value = "Fire and Rescue" />
+          <Picker.Item label = "Ambulance" value = "Ambulance" />
+          <Picker.Item label = "GP" value = "GP" />
+          <Picker.Item label = "Pharmacist" value = "Pharmacist" />
+          <Picker.Item label = "Social Worker" value = "Social Worker" />
+          <Picker.Item label = "Charity" value = "Charity" />
+          <Picker.Item label = "Carer" value = "Carer" />
+          <Picker.Item label = "Friend, family or neighbour" value = "Friend, family or neighbour" />
+          <Picker.Item label = "Other" value = "Other" />
+        </Picker>        
+
+
+
         <View style={{margin:7}} />
         <Button 
           onPress={()=> this.next()}

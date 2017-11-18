@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     flex:3, 
     padding:20,
     fontSize: 20,
-    color: '#FFFFFF',  
+    color: '#000',  
 
   }
 
