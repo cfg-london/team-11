@@ -27,6 +27,7 @@ export default class Contact extends React.Component {
         backgroundColor: '#FF8E00'
       },
       headerTintColor: '#FFFFFF',
+      headerLeft: null
       /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
   });
 
@@ -50,7 +51,7 @@ export default class Contact extends React.Component {
     }
 
     async setDetails() {
-      if(this.state.address!="" && (this.state.phone)!=""){
+      if(this.state.address!="" || (this.state.phone)!=""){
       try {
         await AsyncStorage.setItem('address', "" + (this.state.address));
         await AsyncStorage.setItem('phone', "" + (this.state.phone));
@@ -70,14 +71,14 @@ export default class Contact extends React.Component {
       <View style={styles.container}>
         <ScrollView style={{padding: 20}}>
        <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Address'} />
-          <TextInput placeholder='Address' onChangeText={(address) => this.setState({address})} style={styles.input} />
+          <TextInput maxheightmultiline={true} placeholder='Address' onChangeText={(address) => this.setState({address})} style={styles.input} />
           <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Phone'} />
           <TextInput placeholder='Phone'  keyboardType={'phone-pad'} onChangeText={(phone) => this.setState({phone})} style={styles.input} />
           <View style={{margin:7}} />
           <PowerButton 
             onPress={() =>
             this.setDetails()}
-            title="Sumbit"
+            title="Submit"
             backgroundColor='#FF8E00'
           borderRadius={20}
           large

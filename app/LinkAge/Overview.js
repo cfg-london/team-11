@@ -25,6 +25,7 @@ export default class Overview extends React.Component {
         backgroundColor: '#FF8E00'
       },
       headerTintColor: '#FFFFFF',
+      headerLeft: null
       /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
   });
     constructor(props) {

@@ -10,36 +10,30 @@ import {
     Image
   } from 'react-native';
 
-import {
-  StackNavigator,
-} from 'react-navigation';
+import {StackNavigator,} from 'react-navigation';
 import PowerButton from './PowerButton';
 import Countries from './Countries';
-
-
 import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
 
 export default class AboutUs extends React.Component {
 
-
   static navigationOptions = ({ navigation, screenProps }) => ({
-      headerTitle: "About Toynbee Hall",
-      headerStyle: {
-        backgroundColor: '#FF8E00'
-      },
-      headerTintColor: '#FFFFFF',
-      /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
+    headerTitle: "About Toynbee Hall",
+    headerStyle: {
+      backgroundColor: '#FF8E00'
+    },
+    headerTintColor: '#FFFFFF',
+    headerLeft: null
   });
 
 
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
     this.state = {
       language: "en",
     }
     Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
-
-    }
+  }
 
     setLanguage(language) {
       Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',language);
@@ -73,7 +67,7 @@ export default class AboutUs extends React.Component {
       <PowerTranslator text={'The idea of this app is for people who are in contact with the vunerable elderely and provide a medium for them to quickly and effortly tell linkage about the issue so we can have a solution faster.'} /> 
       <Text/>
       <PowerTranslator text={'We hope you enjoy the app and use it to help the community'} /> 
-        <View style={{padding: 20, flexDirection: 'column', alignItems: 'center'}}>
+      <View style={{padding: 20, flexDirection: 'column', alignItems: 'center'}}>
         <PowerButton 
           style={styles.button}
           backgroundColor='#FF8E00'
@@ -82,9 +76,7 @@ export default class AboutUs extends React.Component {
           onPress={() => navigate('Home')}
           title="Next"
         />
-
         <Text/>
-
         <PowerButton
           style={styles.button}
           backgroundColor='#FF8E00'
@@ -93,12 +85,10 @@ export default class AboutUs extends React.Component {
           onPress={() => this.openLink("http://www.toynbeehall.org.uk/")}
           title="Our Website"
         />
-
         </View>
       </ScrollView>  
       <Countries onClick={this.setLanguage.bind(this)}/>
-      </View>
-    
+    </View>
     )
    }
 }
@@ -125,6 +115,5 @@ const styles = StyleSheet.create({
     margin:0,
     width: '100%',
     resizeMode: 'contain',
- 
   }
 });

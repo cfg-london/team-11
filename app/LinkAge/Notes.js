@@ -25,6 +25,7 @@ export default class Notes extends React.Component {
         backgroundColor: '#FF8E00'
       },
       headerTintColor: '#FFFFFF',
+      headerLeft: null
       /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
   });
 
@@ -61,10 +62,11 @@ export default class Notes extends React.Component {
     return (
       <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
+       <PowerTranslator style={{fontSize: 16, fontWeight:'bold',}} text={'If you think it is useful, you can add a few notes about the situation.'}/>
         <TextInput multiline={true} style={styles.input} placeholder='' onChangeText={(notes) => this.setState({notes})} style={styles.input} />
         <PowerButton 
           onPress={()=> this.setUrgency()}
-          title="Sumbit"
+          title="Submit"
           backgroundColor='#FF8E00'
           borderRadius={20}
           large
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
   },
   input:{
     fontSize: 20,
-    height: 300,
+    height: 200,
     borderColor: '#000'
   }
 });

@@ -4,30 +4,22 @@ import {
     Text,
     TextInput,
     View,
-      StyleSheet,
+    StyleSheet,
     AsyncStorage,
     Image,
   } from 'react-native';
 import PowerButton from './PowerButton';
-
-import {
-  StackNavigator,
-} from 'react-navigation';
-
+import {StackNavigator,} from 'react-navigation';
 import Countries from './Countries';
-
 import call from 'react-native-phone-call'
 
-
 import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
-
     const args = {
-      number: '+447759249808', // String value with the number to call
+      number: '+442073922953', // String value with the number to call
       prompt: false // Optional boolean property. Determines if the user should be prompt prior to the call 
     }
 
 export default class Home extends React.Component {
-
 
   static navigationOptions = ({ navigation, screenProps }) => ({
       headerTitle: "Welcome to Linkage+",
@@ -36,26 +28,24 @@ export default class Home extends React.Component {
       },
       headerTintColor: '#FFFFFF',
       headerLeft: null
-      /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
   });
 
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
     this.state = {
       language: "en",
     }
     Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
+  }
 
-    }
+  setLanguage(language) {
+    Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',language);
+    this.setState({
+      language: language,
+    });
+  }
 
-    setLanguage(language) {
-      Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',language);
-      this.setState({
-        language: language,
-      });
-    }
-
-    async setUrgency(urgency){
+  async setUrgency(urgency){
     try {
       console.log(urgency);
       await AsyncStorage.setItem('urgency', "" + (urgency));
@@ -63,11 +53,9 @@ export default class Home extends React.Component {
     } catch (error) {
       // Error saving data
     }
+  }
 
-    }
-
-
-    render() {
+  render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
@@ -76,8 +64,7 @@ export default class Home extends React.Component {
           style={styles.image}
           source={require('./logo.jpg')}
         />
-          <View style={{margin:7}} />
-
+        <View style={{margin:7}} />
           <PowerButton 
             onPress={() =>
             this.setUrgency(1)}
@@ -94,11 +81,11 @@ export default class Home extends React.Component {
             this.setUrgency(0)}
             title={'Non-Urgent\nReferal'}
             backgroundColor='#FF8E00'
-          borderRadius={20}
-          fontSize={26}
-          textStyle={styles.button}
-                    padding={40}
-          large
+            borderRadius={20}
+            fontSize={26}
+            textStyle={styles.button}
+            padding={40}
+            large
           />
           <Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>
           <PowerButton 
@@ -107,10 +94,9 @@ export default class Home extends React.Component {
             title="Call Us"
             backgroundColor='#FF8E00'
             fontSize={20}
-          borderRadius={20}
-          padding={40}
+            borderRadius={20}
+            padding={40}
           />
-
         </ScrollView>  
         <Countries onClick={this.setLanguage.bind(this)}/>
       </View>
@@ -131,7 +117,6 @@ const styles = StyleSheet.create({
     margin:0,
     width: '100%',
     resizeMode: 'contain',
- 
   },
   button:{
     textAlign: 'center',

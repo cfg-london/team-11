@@ -4,18 +4,13 @@ import {
     Text,
     TextInput,
     View,
-        StyleSheet,
+    StyleSheet,
     AsyncStorage,
     Picker,
   } from 'react-native';
-
-import {
-  StackNavigator,
-} from 'react-navigation';
+import {StackNavigator,} from 'react-navigation';
 import PowerButton from './PowerButton';
 import Countries from './Countries';
-
-
 
 import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
 
@@ -24,27 +19,25 @@ const navigationOptions = {header: null }
 export default class AboutMe extends React.Component {
 
   static navigationOptions = ({ navigation, screenProps }) => ({
-      headerTitle: "Tell us about yourself",
-      headerStyle: {
-        backgroundColor: '#FF8E00'
-      },
-      headerTintColor: '#FFFFFF',
-      /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
+    headerTitle: "Tell us about yourself",
+     headerStyle: {
+      backgroundColor: '#FF8E00'
+    },
+    headerTintColor: '#FFFFFF',
   });
 
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
     this.state = {
       language: "en",
       name: "",
       profession: "Police",
     }
     Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
+  }
 
-    }
-
-    setLanguage(language) {
-      Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',language);
+  setLanguage(language) {
+    Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',language);
       this.setState({
         language: language,
       });
@@ -52,12 +45,12 @@ export default class AboutMe extends React.Component {
 
     next(){
       if(this.state.name!=""){
-      this.doStuff();
-      this.sendData();  
-      this.props.navigation.navigate('AboutUs');
-    }else{
-      alert("please give us a name!")
-    }
+        this.doStuff();
+        this.sendData();  
+        this.props.navigation.navigate('AboutUs');
+      }else{
+        alert("please give us a name!")
+      }
     }
 
    async doStuff () {
@@ -73,7 +66,6 @@ export default class AboutMe extends React.Component {
       var request = new XMLHttpRequest();
       request.onreadystatechange = async(e) => {
         if (request.readyState !== 4) {
-
           return;
         }
         // Checks if the data has been found
@@ -84,7 +76,6 @@ export default class AboutMe extends React.Component {
           } catch (error) {
             console.warn(error);
           }
-
         } else {
           console.warn('Data not found');
         }
@@ -92,7 +83,6 @@ export default class AboutMe extends React.Component {
       request.open('POST', encodeURI('http://138.68.150.49/api/referee?name=' + encodeURIComponent(this.state.name) + '&profession=' + encodeURIComponent(this.state.profession) + '&phone=' + encodeURIComponent(this.state.phone)));
       request.setRequestHeader('content-type', 'application/x-www-form-urlencoded');        
       request.send();
-
   }
 
     async componentWillMount() {
@@ -105,7 +95,6 @@ export default class AboutMe extends React.Component {
         }
       } catch (error) {
         console.log(error);
-
       }
     }
     
@@ -141,8 +130,7 @@ export default class AboutMe extends React.Component {
         />
       </ScrollView>  
       <Countries onClick={this.setLanguage.bind(this)}/>
-      </View>
-    
+    </View>
     )
    }
 }

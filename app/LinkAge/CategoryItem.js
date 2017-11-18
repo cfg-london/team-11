@@ -25,7 +25,7 @@ export default class CategoryItem extends React.Component {
     if(id==6)
       return 'Out and\nAbout';
     if(id==7)
-      return 'Lonliness';
+      return 'Loneliness';
     if(id==8)
       return 'Crisis';
     if(id==9)

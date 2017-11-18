@@ -24,6 +24,7 @@ export default class Consent extends React.Component {
         backgroundColor: '#FF8E00'
       },
       headerTintColor: '#FFFFFF',
+      headerLeft: null
       /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
   });
 
@@ -43,6 +44,21 @@ export default class Consent extends React.Component {
       });
     }
 
+  async goHome() {
+    try {
+      await AsyncStorage.removeItem('name');
+      await AsyncStorage.removeItem('urgency');
+      await AsyncStorage.removeItem('phone');
+      await AsyncStorage.removeItem('address');
+      await AsyncStorage.removeItem('type');
+      await AsyncStorage.removeItem('notes');
+    } catch (error) {
+      // Error saving data
+    }
+
+    this.props.navigation.navigate('Home');
+  }
+
 
     render() {
     const { navigate } = this.props.navigation;
@@ -55,6 +71,15 @@ export default class Consent extends React.Component {
         <PowerButton 
           onPress={()=> navigate('Overview')}
           title="I agree"
+          backgroundColor='#FF8E00'
+          borderRadius={20}
+          large
+          margin={100}
+        />
+        <Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>
+        <PowerButton 
+          onPress={()=> this.goHome()}
+          title="I DO NOT agree"
           backgroundColor='#FF8E00'
           borderRadius={20}
           large

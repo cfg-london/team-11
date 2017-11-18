@@ -21,46 +21,42 @@ import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-
 export default class Name extends React.Component {
 
   static navigationOptions = ({ navigation, screenProps }) => ({
-      headerTitle: "Whats your referee's name",
+      headerTitle: "Referee's name",
       headerStyle: {
         backgroundColor: '#FF8E00'
       },
       headerTintColor: '#FFFFFF',
-      /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
-  });
+      headerLeft: null
+    });
 
-    constructor(props) {
-      super(props);
+    
+  constructor(props) {
+    super(props);
     this.state = {
       language: "en",
       name: "",
     }
     Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
+  }
 
-    }
+  setLanguage(language) {
+    Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',language);
+    this.setState({
+      language: language,
+    });
+  }
 
-    setLanguage(language) {
-      Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',language);
-      this.setState({
-        language: language,
-      });
-    }
-
-    async setName() {
-      if(this.state.name!=""){
-      try {
-        await AsyncStorage.setItem('name', "" + (this.state.name));
-        this.props.navigation.navigate('Contact');
-      } catch (error) {
+  async setName() {
+    if(this.state.name!=""){
+    try {
+      await AsyncStorage.setItem('name', "" + (this.state.name));
+      this.props.navigation.navigate('Contact');
+    } catch (error) {
         // Error saving data
-      }
-      }else{
+    }
+    }else{
         alert('please enter a name!');
-      }
-
-
-      
-
+     }    
     }
 
     render() {
@@ -81,7 +77,6 @@ export default class Name extends React.Component {
       </ScrollView>  
         <Countries onClick={this.setLanguage.bind(this)}/>
       </View>
-    
     )
    }
 }
