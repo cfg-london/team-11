@@ -24,6 +24,7 @@ export default class Name extends React.Component {
       super(props);
     this.state = {
       language: "en",
+      name: "",
     }
     Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
 
@@ -37,12 +38,19 @@ export default class Name extends React.Component {
     }
 
     async setName() {
+      if(this.state.name!=""){
       try {
         await AsyncStorage.setItem('name', "" + (this.state.name));
         this.props.navigation.navigate('Contact');
       } catch (error) {
         // Error saving data
       }
+      }else{
+        alert('please enter a name!');
+      }
+
+
+      
 
     }
 
