@@ -32,7 +32,7 @@ export default class Countries extends React.Component {
       } else {
         var language = await AsyncStorage.getItem('language');
         this.setState({
-            language: language,
+            //language: language,
         });
 
       }

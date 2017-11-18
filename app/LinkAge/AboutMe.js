@@ -24,6 +24,8 @@ export default class AboutMe extends React.Component {
       super(props);
     this.state = {
       language: "en",
+      name: "",
+      profession: "",
     }
     Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
 
@@ -37,7 +39,8 @@ export default class AboutMe extends React.Component {
     }
 
     next(){
-      this.doStuff();  
+      this.doStuff();
+      this.sendData();  
       this.props.navigation.navigate('AboutUs');
     }
 
@@ -49,6 +52,31 @@ export default class AboutMe extends React.Component {
 
       }
     }
+
+    sendData() {
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = async(e) => {
+        if (request.readyState !== 4) {
+
+          return;
+        }
+        // Checks if the data has been found
+        if (request.status === 200) {
+          (JSON.parse(request.responseText));
+          try {
+            await AsyncStorage.setItem('refereeID', JSON.parse(request.responseText).referee_id);
+          } catch (error) {
+
+          }
+
+        } else {
+          console.warn('Data not found');
+        }
+      };
+      request.open('POST', 'http://138.68.150.49/api/referee?name=' + this.state.name + '&profession=' + this.state.profession);
+      request.send();
+
+  }
 
     async componentWillMount() {
       try {
@@ -72,9 +100,9 @@ export default class AboutMe extends React.Component {
       <ScrollView style={{padding: 20}}>
         <PowerTranslator style={{fontSize: 27}} text={'Tell us about you'} />
         <PowerTranslator text={'Name'} />
-        <TextInput placeholder='Name' style={styles.input} />
+        <TextInput placeholder='Name' onChangeText={(name) => this.setState({name})} style={styles.input} />
         <PowerTranslator text={'Profession'} />
-        <TextInput placeholder='Profession' style={styles.input}/>
+        <TextInput placeholder='Profession' onChangeText={(profession) => this.setState({profession})} style={styles.input}/>
         <View style={{margin:7}} />
         <Button 
           onPress={()=> this.next()}

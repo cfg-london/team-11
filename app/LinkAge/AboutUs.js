@@ -54,7 +54,7 @@ export default class AboutUs extends React.Component {
       <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
       <PowerTranslator style={{fontSize: 27, margin:10}} text={'About Us'} />
-      <PowerTranslator style={styles.text} text={'We work on the frontline in the struggle against poverty. Based in the East End of London we give some of the UK’s most deprived communities a voice, providing access to free advice and support and working together to tackle social injustice.'} />
+      <PowerTranslator text={'We work on the frontline in the struggle against poverty. Based in the East End of London we give some of the UK’s most deprived communities a voice, providing access to free advice and support and working together to tackle social injustice.'} />
         <Button
           style={styles.button}
           onPress={() => this.openLink("http://www.toynbeehall.org.uk/")}
