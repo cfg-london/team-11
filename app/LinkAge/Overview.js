@@ -176,10 +176,8 @@ export default class Overview extends React.Component {
   async addAnother() {
     this.sendData();
     try {
-      await AsyncStorage.removeItem('name');
-      await AsyncStorage.removeItem('urgency');
-      await AsyncStorage.removeItem('phone');
-      await AsyncStorage.removeItem('address');
+      await AsyncStorage.removeItem('type');
+      await AsyncStorage.removeItem('notes');
     } catch (error) {
       // Error saving data
     }
@@ -214,7 +212,7 @@ export default class Overview extends React.Component {
         <Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>
         <PowerButton 
           onPress={()=> this.submit()}
-          title="Sumbit"
+          title="Submit"
           backgroundColor='#FF8E00'
           borderRadius={20}
           large
@@ -222,7 +220,7 @@ export default class Overview extends React.Component {
         <Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>
         <PowerButton 
           onPress={()=> this.addAnother()}
-          title="Add another"
+          title="Submit and add another"
           backgroundColor='#FF8E00'
           borderRadius={20}
           large
