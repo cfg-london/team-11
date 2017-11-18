@@ -9,8 +9,11 @@ import {
     FlatList
   } from 'react-native';
 
+import Countries from './Countries';
 import CategoryItem from './CategoryItem.js'; 
-import SubCategory from './SubCategory.js'
+import SubCategory from './SubCategory.js';
+import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
+
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -32,8 +35,19 @@ export default class Category extends React.Component {
     this.state = {
       first: 1,
       sub: 0,
+      language: "en",
     }
-  }
+    Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
+
+    }
+
+    setLanguage(language) {
+      Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',language);
+      this.setState({
+        language: language,
+      });
+    }
+
   switchState(i){
     this.setState({
       first : 0,
@@ -53,15 +67,19 @@ export default class Category extends React.Component {
           keyExtractor={(item) => item.id}
           numColumns={3}
       />
+      <Countries onClick={this.setLanguage.bind(this)}/>
+
       </View>   
     )
   }else{
  return(
-    <ScrollView contentContainerStyle={styles.container}>
-    <View style={styles.container}>
+  <View style={styles.container}>
+    <ScrollView >
           <SubCategory id={this.state.sub} movePage={() => navigate('Notes')}/>
-      </View>
-      </ScrollView>      
+      </ScrollView>    
+    <Countries onClick={this.setLanguage.bind(this)}/>
+    </View>
+  
 
       )
   }
@@ -70,6 +88,7 @@ export default class Category extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex:1,
     backgroundColor: '#fff',
     alignItems: 'center',
   },

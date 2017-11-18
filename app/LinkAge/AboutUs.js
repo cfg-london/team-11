@@ -13,7 +13,7 @@ import {
 import {
   StackNavigator,
 } from 'react-navigation';
-import { Button } from 'react-native-elements';
+import PowerButton from './PowerButton';
 import Countries from './Countries';
 
 
@@ -74,18 +74,18 @@ export default class AboutUs extends React.Component {
       <Text/>
       <PowerTranslator text={'We hope you enjoy the app and use it to help the community'} /> 
         <View style={{padding: 20, flexDirection: 'column', alignItems: 'center'}}>
-        <Button 
+        <PowerButton 
           style={styles.button}
           backgroundColor='#FF8E00'
           borderRadius={20}
-          
           width={300}
           onPress={() => navigate('Home')}
           title="Next"
         />
+
         <Text/>
 
-        <Button
+        <PowerButton
           style={styles.button}
           backgroundColor='#FF8E00'
           borderRadius={20}

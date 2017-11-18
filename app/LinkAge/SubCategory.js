@@ -8,7 +8,7 @@ import {
 const {width, height}= Dimensions.get("window");
 
 
-import { Button } from 'react-native-elements';
+import PowerButton from './PowerButton';
 
 
 export default class SubCategory extends React.Component {
@@ -97,11 +97,11 @@ export default class SubCategory extends React.Component {
     var x=[];
     for(i=0; i<titles.length; i++){
       var title = titles[i];
-      x.push(<Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>)
+      x.push(<Text key={i+100} style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>)
     x.push( 
-        <Button
+        <PowerButton
           key={i}
-          style={styles.button}
+          buttonStyle={styles.button}
           backgroundColor='#FF8E00'
           borderRadius={20}
           large
