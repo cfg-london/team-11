@@ -52,10 +52,6 @@ export default class Category extends React.Component {
           <CategoryItem id={7} func={this.switchState.bind(this)}/>
           <CategoryItem id={8} func={this.switchState.bind(this)}/>
           <CategoryItem id={9} func={this.switchState.bind(this)}/>
-        <Button 
-          onPress={()=> navigate('Notes')}
-          title="Sumbit"
-        />
       </ScrollView>      
     )
   }else{

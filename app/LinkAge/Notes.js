@@ -34,15 +34,27 @@ export default class Notes extends React.Component {
       });
     }
 
+    async setUrgency(){
+      try {
+        await AsyncStorage.setItem('notes', "" + this.state.notes);
+        this.props.navigation.navigate('Overview');
+      } catch (error) {
+        // Error saving data
+      }
+
+    }
+
+
+
     render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
         <PowerTranslator style={{fontSize: 27}} text={'Notes'} />
-        <TextInput placeholder='' style={styles.input} />
+        <TextInput placeholder='' onChangeText={(notes) => this.setState({notes})} style={styles.input} />
         <Button 
-          onPress={()=> navigate('Overview')}
+          onPress={()=> this.setUrgency()}
           title="Sumbit"
         />
       </ScrollView>      

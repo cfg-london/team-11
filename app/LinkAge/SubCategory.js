@@ -38,12 +38,21 @@ export default class SubCategory extends React.Component {
       return nine;
   }
 
+  async setCategory(title){
+      try {
+        await AsyncStorage.setItem('category', "" + (title));
+        this.props.navigation.navigate('Notes');
+      } catch (error) {
+        // Error saving data
+      }
+
+  }
 
   getGroup(){
     var titles=this.getTitle();
     var x=[];
     for(i=0; i<titles.length; i++){
-    x.push( <TouchableHighlight style={styles.container}>
+    x.push( <TouchableHighlight style={styles.container} onPress={() => this.setCategory(titles[i])}>
       <View style={styles.container}>
       <Text style={styles.textItem}>{titles[i]}</Text>
       </View>

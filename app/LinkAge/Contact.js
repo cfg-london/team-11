@@ -5,7 +5,8 @@ import {
     TextInput,
     View,
     Button,
-    StyleSheet
+    StyleSheet,
+    AsyncStorage
   } from 'react-native';
 
 import {
@@ -39,6 +40,17 @@ export default class Contact extends React.Component {
       });
     }
 
+    async setDetails() {
+      try {
+        await AsyncStorage.setItem('address', "" + (this.state.address));
+        await AsyncStorage.setItem('phone', "" + (this.state.phone));
+        this.props.navigation.navigate('Category');
+      } catch (error) {
+        // Error saving data
+      }
+
+    }
+
 
     render() {
     const { navigate } = this.props.navigation;
@@ -47,13 +59,13 @@ export default class Contact extends React.Component {
         <ScrollView style={{padding: 20}}>
         <PowerTranslator style={{fontSize: 27}} text={'Details :'} />
         <PowerTranslator text={'Address'} />
-          <TextInput placeholder='Address' style={styles.input} />
+          <TextInput placeholder='Address' onChangeText={(address) => this.setState({address})} style={styles.input} />
                   <PowerTranslator text={'Phone'} />
-          <TextInput placeholder='Phone' style={styles.input} />
+          <TextInput placeholder='Phone' nChangeText={(phone) => this.setState({phone})} style={styles.input} />
           <View style={{margin:7}} />
           <Button 
             onPress={() =>
-            navigate('Category')}
+            this.setDetails()}
             title="Sumbit"
           />
         </ScrollView>    
