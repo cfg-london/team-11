@@ -35,6 +35,7 @@ export default class Home extends React.Component {
         backgroundColor: '#FF8E00'
       },
       headerTintColor: '#FFFFFF',
+      headerLeft: null
       /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
   });
 

@@ -31,38 +31,11 @@
                                     <td>{{ $reference->notes }}</td>
                                     <td></td>
                                 </tr>
-                            @endforeach
 
+                            @endforeach
                         </table>
 
                     </div>
-
-
-                <div class="panel-body">
-
-                    <table style="width:40%">
-                        <tr>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                            <th>Urgency</th>
-                            <th>Type</th>
-                            <th>Reference_id</th>
-                        </tr>
-                        @foreach($references as $reference)
-                            <tr>
-                                <td>{{ $reference->name }}</td>
-                                <td>{{ $reference->phone }}</td>
-                                <td>{{ $reference->address }}</td>
-                                <td>{{ $reference->urgency }}</td>
-                                <td>{{ $reference->type }}</td>
-                                <td>{{ $reference->referee_id }}</td>
-                                <td>{{ $reference->notes }}</td>
-                            </tr>
-                        @endforeach
-
-                    </table>
-                </div>
 
             </div>
         </div>

@@ -91,9 +91,6 @@ export default class CategoryItem extends React.Component {
           style={styles.image}
           source={require('./9.png')}
         />);
-
-
-
   }
 
 render(){
