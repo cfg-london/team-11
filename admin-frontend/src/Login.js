@@ -24,7 +24,7 @@ export default class Login extends React.Component {
 
 	checkAccount = () => {
 		var xhr = new XMLHttpRequest();
-		var data = "user_name" + encodeURIComponent(this.state.username) + "&password=" + encodeURIComponent(this.state.password);
+		var data = "user_name=" + encodeURIComponent(this.state.username) + "&password=" + encodeURIComponent(this.state.password);
 
 		xhr.addEventListener("readystatechange", () => {
 			if (this.readyState === 4 || this.readyState === 200) {
