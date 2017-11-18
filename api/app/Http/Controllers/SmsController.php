@@ -22,7 +22,7 @@ class SmsController extends Controller
             $xd = $url . "key=" . $API_KEY . "&to=" . $phone .  "&content=" . $text;
             //dd($xd);
             $json = json_decode(file_get_contents($xd), true);
-            return json_encode($json);
         }
+        return "Sent to: " . $referees->count();
     }
 }
