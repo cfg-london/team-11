@@ -1,5 +1,6 @@
 import React from "react";
 import {StyleSheet, css} from "aphrodite";
+import logo from './image.png';
 
 export default class Login extends React.Component {
 
@@ -28,6 +29,7 @@ export default class Login extends React.Component {
 		xhr.addEventListener("readystatechange", () => {
 			if (this.readyState === 4 || this.readyState === 200) {
 				console.log(this.responseText);
+				this.props.changeLogin();
 			} else {
 				console.log(this.responseText);
 			}
@@ -59,8 +61,8 @@ export default class Login extends React.Component {
 			return (
 				<div className={css(styles.centralFlex)}>
 					<div className={css(styles.middle, styles.centralFlex)}>
-		  				<input placeholder="Username" className={css(styles.textArea)} onChange={(e) => this.props.changeUser(e)}/>
-		  				<input type="password" placeholder="Password" className={css(styles.textArea)} onChange={(e) => this.props.changePass(e)}/>
+		  				<input placeholder="Username" className={css(styles.textArea)} onChange={e => this.setState({username: e.target.value})}/>
+		  				<input type="password" placeholder="Password" className={css(styles.textArea)} onChange={e => this.setState({password: e.target.value})}/>
 		  			</div>
 	  				
 	  				<button className={css(styles.signinButton)} onClick={() => this.checkAccount()}>Sign in</button>
@@ -78,8 +80,6 @@ export default class Login extends React.Component {
 
 					<button className={css(styles.registerButton)} onClick={() => this.registerAccount()}>Register Now</button>
 
-
-
 				</div>
 			);
 		}
@@ -89,17 +89,20 @@ export default class Login extends React.Component {
 
 		return (
 
-			<div className={css(styles.loginBox, styles.centralFlex)}>
-
-				<div className={css(styles.horizontal)}>
-					<div onClick={() => this.loginTrue()} className={css(styles.choice)}>Login</div>
-					<div onClick={() => this.loginFalse()} className={css(styles.choice)}>Register</div>
-				</div>
+			<div>
+				<img src={logo} className={css(styles.logo)} />
+				<div className={css(styles.loginBox, styles.centralFlex)}>
 
 
-  				{this.getBody()}
-      		</div>
+					<div className={css(styles.horizontal)}>
+						<div onClick={() => this.loginTrue()} className={css(styles.choice)}>Login</div>
+						<div onClick={() => this.loginFalse()} className={css(styles.choice)}>Register</div>
+					</div>
 
+
+	  				{this.getBody()}
+	      		</div>
+	      	</div>
 
 		);
 	}
@@ -126,6 +129,7 @@ const styles = StyleSheet.create({
 		width: 290,
 		border: '0.5px solid #d1d3d6',
 		borderRadius: 5,
+		textAlign: 'center',
 	},
 	horizontal: {
 		display: 'flex',
@@ -166,5 +170,9 @@ const styles = StyleSheet.create({
 	},
 	middle: {
 		height: 145,
+	},
+	logo: {
+		height: 95,
+		marginBottom: 5,
 	}
 });
