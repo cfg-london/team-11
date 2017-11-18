@@ -45,7 +45,7 @@ export default class Countries extends React.Component {
  backgroundColour= (language) => {
     if(this.state.language == language){
       return({
-        backgroundColor: '#000000',
+        backgroundColor: '#FF8E00',
         flex:1,
         borderColor: '#92979B',
         borderWidth: 0.5

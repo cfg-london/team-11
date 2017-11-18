@@ -113,7 +113,7 @@ export default class AboutMe extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-      <ScrollView style={{padding: 20}}>
+      <ScrollView scrollEnabled style={{padding: 20}}>
         <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Name'} />
         <TextInput placeholder='Name' onChangeText={(name) => this.setState({name})} style={styles.input} />
         <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Profession'} />
