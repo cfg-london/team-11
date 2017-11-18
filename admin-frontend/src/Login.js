@@ -36,7 +36,7 @@ export default class Login extends React.Component {
             } else if (this.readyState === 401) {
             	console.log(this.responseText);
             } else {
-            	console.log("ummm");
+            	console.log(this.responseText);
             }
         });
 		xhr.open("POST", "http://138.68.150.49/api/login");
