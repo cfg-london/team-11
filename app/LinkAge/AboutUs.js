@@ -73,16 +73,7 @@ export default class AboutUs extends React.Component {
       <PowerTranslator text={'The idea of this app is for people who are in contact with the vunerable elderely and provide a medium for them to quickly and effortly tell linkage about the issue so we can have a solution faster.'} /> 
       <Text/>
       <PowerTranslator text={'We hope you enjoy the app and use it to help the community'} /> 
-        <View style={{padding: 20, flexDirection: 'column', allign: 'center'}}>
-        <Button
-          style={styles.button}
-          backgroundColor='#FF8E00'
-          borderRadius={20}
-          margin={100}
-          onPress={() => this.openLink("http://www.toynbeehall.org.uk/")}
-          title="Our Website"
-        />
-        <Text/>
+        <View style={{padding: 20, flexDirection: 'column', alignItems: 'center'}}>
         <Button 
           style={styles.button}
           backgroundColor='#FF8E00'
@@ -92,6 +83,17 @@ export default class AboutUs extends React.Component {
           onPress={() => navigate('Home')}
           title="Next"
         />
+        <Text/>
+
+        <Button
+          style={styles.button}
+          backgroundColor='#FF8E00'
+          borderRadius={20}
+          margin={100}
+          onPress={() => this.openLink("http://www.toynbeehall.org.uk/")}
+          title="Our Website"
+        />
+
         </View>
       </ScrollView>  
       <Countries onClick={this.setLanguage.bind(this)}/>

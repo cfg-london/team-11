@@ -1,9 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableHighlight, AsyncStorage } from 'react-native';
+import { StyleSheet, View, Text, TouchableHighlight, AsyncStorage, Dimensions } from 'react-native';
 
 import {
   StackNavigator,
 } from 'react-navigation';
+
+const {width, height}= Dimensions.get("window");
+
+
+import { Button } from 'react-native-elements';
+
 
 export default class SubCategory extends React.Component {
 
@@ -91,11 +97,18 @@ export default class SubCategory extends React.Component {
     var x=[];
     for(i=0; i<titles.length; i++){
       var title = titles[i];
-    x.push( <TouchableHighlight style={styles.container} onPress={() => this.setCategory(title)} key={i}>
-      <View style={styles.container}>
-      <Text style={styles.textItem}>{titles[i]}</Text>
-      </View>
-    </TouchableHighlight>);
+    x.push( 
+        <Button
+          key={i}
+          style={styles.button}
+          backgroundColor='#FF8E00'
+          borderRadius={20}
+          large
+          onPress={() => this.setCategory(title)}
+          title={title}
+        />
+
+    );
   }
     return x;
   }
@@ -132,7 +145,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#000',  
 
-  }
+  },
+
+  button:{
+    margin:10,
+    padding: 10,
+    width: width*0.75,
+  },
+
 
 });
 

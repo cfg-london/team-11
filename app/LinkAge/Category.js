@@ -57,7 +57,8 @@ export default class Category extends React.Component {
     )
   }else{
     return(
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
           <SubCategory id={this.state.sub} movePage={() => navigate('Notes')}/>
       </ScrollView>      
 
@@ -68,10 +69,8 @@ export default class Category extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   input:{
     fontSize: 20,
