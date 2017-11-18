@@ -19,7 +19,7 @@ import Countries from './Countries';
 import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
 
   const navigationOptions = {
-    header: 'null',
+     header:{ visible:false },
   }
 
 export default class Contact extends React.Component {
@@ -28,6 +28,8 @@ export default class Contact extends React.Component {
       super(props);
     this.state = {
       language: "en",
+      address: "",
+      phone: "",
     }
     Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
 
@@ -37,7 +39,6 @@ export default class Contact extends React.Component {
       Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',language);
       this.setState({
         language: language,
-        address: "",
       });
     }
 
@@ -53,9 +54,6 @@ export default class Contact extends React.Component {
       }else{
         alert('Please fill in all fields!')
       }
-
-      
-
     }
 
 
