@@ -69,7 +69,7 @@ export default class Countries extends React.Component {
   render() {
   {/* Shows data is loading */}
     return (
-      <View>
+      <ScrollView>
         <View style={styles.footerButtonsRow}>
           <TouchableHighlight style={this.backgroundColour("en")} onPress={() => this.setLanguage("en")}>
             <View style={styles.footerButtonView}>
@@ -97,7 +97,7 @@ export default class Countries extends React.Component {
             </View>
           </TouchableHighlight>
         </View>
-      </View>
+      </ScrollView>
     );
 
 

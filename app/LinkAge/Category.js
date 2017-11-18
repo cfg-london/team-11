@@ -29,22 +29,14 @@ export default class Category extends React.Component {
   }
 
   switchState(i){
-    console.log('flipped');
     this.setState({
       first : 0,
+      sub: parseInt(i),
     });
-    console.log(this.state.first);
-  }
-
-  getSub(i){
-    var x={};
-    x.push(<SubCategory id={11}/>,<SubCategory id={12}/>,<SubCategory id={13}/>,<SubCategory id={14}/> )
-    return x;
   }
 
     render() {
     const { navigate } = this.props.navigation;
-    console.log(this.state.first);
     if(this.state.first){
     return (
       <ScrollView style={{padding: 20}}>
@@ -72,11 +64,7 @@ export default class Category extends React.Component {
         <Text style={{fontSize: 27}}>
           Pick a category
         </Text>
-          <SubCategory id={11}/>
-          <SubCategory id={12}/>
-          <SubCategory id={13}/>
-          <SubCategory id={14}/>
-          <SubCategory id={15}/>
+          <SubCategory id={this.state.sub}/>
         <Button 
           onPress={()=> navigate('Notes')}
           title="Sumbit"
