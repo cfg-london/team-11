@@ -5,7 +5,8 @@ import {
     TextInput,
     View,
     Button,
-    StyleSheet
+    StyleSheet,
+    AsyncStorage
   } from 'react-native';
 
 import {
@@ -23,6 +24,7 @@ export default class Name extends React.Component {
       super(props);
     this.state = {
       language: "en",
+      name: "",
     }
     Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
 
@@ -35,6 +37,22 @@ export default class Name extends React.Component {
       });
     }
 
+    async setName() {
+      if(this.state.name!=""){
+      try {
+        await AsyncStorage.setItem('name', "" + (this.state.name));
+        this.props.navigation.navigate('Contact');
+      } catch (error) {
+        // Error saving data
+      }
+      }else{
+        alert('please enter a name!');
+      }
+
+
+      
+
+    }
 
     render() {
     const { navigate } = this.props.navigation;
@@ -43,11 +61,11 @@ export default class Name extends React.Component {
       <ScrollView style={{padding: 20}}>
         <PowerTranslator style={{fontSize: 27}} text={'Name:'} />
 
-        <TextInput placeholder='Name' style={styles.input} />
+        <TextInput placeholder='Name' onChangeText={(name) => this.setState({name})} style={styles.input} />
         <View style={{margin:7}} />
         <Button 
           onPress={() =>
-          navigate('Contact')}
+          this.setName()}
           title="Sumbit"
         />
       </ScrollView>  

@@ -5,7 +5,8 @@ import {
     TextInput,
     View,
     Button,
-    StyleSheet
+    StyleSheet,
+    AsyncStorage
   } from 'react-native';
 
 import {
@@ -43,6 +44,17 @@ export default class Home extends React.Component {
       });
     }
 
+    async setUrgency(urgency){
+    try {
+      console.log(urgency);
+      await AsyncStorage.setItem('urgency', "" + (urgency));
+      this.props.navigation.navigate('Name');
+    } catch (error) {
+      // Error saving data
+    }
+
+    }
+
 
     render() {
     const { navigate } = this.props.navigation;
@@ -58,12 +70,12 @@ export default class Home extends React.Component {
           />
           <Button 
             onPress={() =>
-            navigate('Name')}
+            this.setUrgency(1)}
             title="Urgent"
           />
           <Button 
             onPress={() =>
-            navigate('Name')}
+            this.setUrgency(0)}
             title="NonUrgent"
           />
 

@@ -9,7 +9,7 @@ export default class SubCategory extends React.Component {
 
  getTitle(){
     var id=this.props.id;
-    var one=['nope'];
+    var one=['Falls', 'Medication or Prescription issues', 'Getting to your GP or Hospital', 'treatment', 'flu jabs' ,'Community nursing','Physio', 'osteopathy and chiropody','Falls','Alarms', 'Housing adaptations'];
     var two=['yeee'];
     var three=['lit'];
     var four=['asdf'];
@@ -38,12 +38,21 @@ export default class SubCategory extends React.Component {
       return nine;
   }
 
+  async setCategory(title){
+      try {
+        await AsyncStorage.setItem('category', "" + (title));
+        this.props.navigation.navigate('Notes');
+      } catch (error) {
+        // Error saving data
+      }
+
+  }
 
   getGroup(){
     var titles=this.getTitle();
     var x=[];
     for(i=0; i<titles.length; i++){
-    x.push( <TouchableHighlight style={styles.container}>
+    x.push( <TouchableHighlight style={styles.container} onPress={() => this.setCategory(titles[i])}>
       <View style={styles.container}>
       <Text style={styles.textItem}>{titles[i]}</Text>
       </View>
@@ -82,7 +91,7 @@ const styles = StyleSheet.create({
     flex:3, 
     padding:20,
     fontSize: 20,
-    color: '#FFFFFF',  
+    color: '#000',  
 
   }
 
