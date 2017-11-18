@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5eba86da256ddeb8084c32d3d10e18d3",
+    "content-hash": "6a5cbe0e3a1e71efc79bf95544f3ac78",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1257,6 +1257,50 @@
                 "uuid"
             ],
             "time": "2017-09-22T20:46:04+00:00"
+        },
+        {
+            "name": "stevebauman/eloquenttable",
+            "version": "v1.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stevebauman/eloquent-table.git",
+                "reference": "572a04504b7aa4dc711b1cd9b3d165030f7bafb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stevebauman/eloquent-table/zipball/572a04504b7aa4dc711b1cd9b3d165030f7bafb1",
+                "reference": "572a04504b7aa4dc711b1cd9b3d165030f7bafb1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.* | 5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Stevebauman\\EloquentTable\\": "src/Stevebauman/EloquentTable/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Steve Bauman",
+                    "email": "steven_bauman_7@hotmail.com"
+                }
+            ],
+            "description": "An HTML table generator for laravel collections",
+            "keywords": [
+                "eloquent",
+                "html",
+                "laravel",
+                "php",
+                "table"
+            ],
+            "time": "2017-03-28T13:11:22+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

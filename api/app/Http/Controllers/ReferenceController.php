@@ -16,7 +16,9 @@ class ReferenceController extends Controller
      */
     public function index()
     {
-        return json_encode(Reference::all());
+        $references = Reference::all();
+
+        return view('home')->with('references', $references);
     }
 
     /**
