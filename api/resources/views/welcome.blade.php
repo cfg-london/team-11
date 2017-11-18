@@ -78,11 +78,9 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    ToynBee Hall
-                </div>
 
-                
+                <img src="{{ asset('logo.png')}}"/>
+
             </div>
         </div>
     </body>
