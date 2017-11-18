@@ -46,8 +46,19 @@ export default class Home extends React.Component {
           <Button 
             onPress={() =>
             navigate('Name')}
-            title="Sumbit"
+            title="Call"
           />
+          <Button 
+            onPress={() =>
+            navigate('Name')}
+            title="Urgent"
+          />
+          <Button 
+            onPress={() =>
+            navigate('Name')}
+            title="NonUrgent"
+          />
+
         </ScrollView>  
         <Countries onClick={this.setLanguage.bind(this)}/>
       </View>
