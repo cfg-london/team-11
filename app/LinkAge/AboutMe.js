@@ -12,7 +12,7 @@ import {
 import {
   StackNavigator,
 } from 'react-navigation';
-import { Button } from 'react-native-elements';
+import PowerButton from './PowerButton';
 import Countries from './Countries';
 
 
@@ -132,7 +132,7 @@ export default class AboutMe extends React.Component {
         <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Phone'} />
         <TextInput placeholder='Phone'  keyboardType={'phone-pad'} onChangeText={(phone) => this.setState({phone})} style={styles.input} />
         <View style={{margin:7}} />
-        <Button 
+        <PowerButton 
           onPress={()=> this.next()}
           title="Submit"
           backgroundColor='#FF8E00'

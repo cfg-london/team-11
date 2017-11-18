@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Image, View, Text, TouchableHighlight, Dimensions } from 'react-native';
+import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
 
 const {width, height}= Dimensions.get("window");
 
@@ -94,13 +95,11 @@ export default class CategoryItem extends React.Component {
 
 render(){
   var id=(this.props.id);
-  var file="'./"+id+".png/'";
-  console.log(file);
   return(
       <TouchableHighlight style={styles.container} onPress={()=>this.props.func(id)}>
         <View style={styles.container} >
           {this.getImage()}
-          <Text style={styles.textItem}>{this.getTitle()}</Text>
+          <PowerTranslator style={{flex:3, padding:20, fontSize: 14, color: '#000', alignItems: 'center',textAlign: 'center'}} text={this.getTitle()} />
         </View>
       </TouchableHighlight>
 
@@ -117,7 +116,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: '#FFFFFF',
     borderWidth: 1,
-    height: height/3.5,
+    height: height/3.6,
     width: width / 3,
     borderRadius:10,
   },

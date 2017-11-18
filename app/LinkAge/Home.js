@@ -8,7 +8,8 @@ import {
     AsyncStorage,
     Image,
   } from 'react-native';
-import { Button } from 'react-native-elements';
+import PowerButton from './PowerButton';
+
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -77,7 +78,7 @@ export default class Home extends React.Component {
         />
           <View style={{margin:7}} />
 
-          <Button 
+          <PowerButton 
             onPress={() =>
             this.setUrgency(1)}
             title={'Urgent\nReferal'}
@@ -88,7 +89,7 @@ export default class Home extends React.Component {
             large
           />
           <Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>
-          <Button 
+          <PowerButton 
             onPress={() =>
             this.setUrgency(0)}
             title={'Non-Urgent\nReferal'}
@@ -100,7 +101,7 @@ export default class Home extends React.Component {
           large
           />
           <Text style={{fontSize:15, backgroundColor: '#FFF'}}>  </Text>
-          <Button 
+          <PowerButton 
             onPress={() =>
             call(args).catch(console.error)}
             title="Call Us"

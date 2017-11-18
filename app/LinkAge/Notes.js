@@ -11,7 +11,7 @@ import {
 import {
   StackNavigator,
 } from 'react-navigation';
-import { Button } from 'react-native-elements';
+import PowerButton from './PowerButton';
 import Countries from './Countries';
 
 
@@ -62,7 +62,7 @@ export default class Notes extends React.Component {
       <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
         <TextInput multiline={true} style={styles.input} placeholder='' onChangeText={(notes) => this.setState({notes})} style={styles.input} />
-        <Button 
+        <PowerButton 
           onPress={()=> this.setUrgency()}
           title="Sumbit"
           backgroundColor='#FF8E00'
