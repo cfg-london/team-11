@@ -28,13 +28,12 @@ class RefereeTest extends TestCase
             'phone' => '01225123123',
             'profession' => 'Doctor'
         ]);
-
         $response->assertStatus(200);
     }
 
     /** @test */
     public function update() {
-        $response = $this->json('PUT', 'api/referee/102', [
+        $response = $this->json('PUT', 'api/referee/47', [
             'name' => 'Steve',
             'phone' => '01225123123',
             'profession' => 'Doctor'
