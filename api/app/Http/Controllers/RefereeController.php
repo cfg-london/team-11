@@ -37,6 +37,7 @@ class RefereeController extends Controller
     {
         $referee = new Referee();
         $referee->name = $request->name;
+        $referee->phone = $request->phone;
         $referee->profession = $request->profession ;
         $referee->save();
         return json_encode($referee);
@@ -73,7 +74,7 @@ class RefereeController extends Controller
      */
     public function update(Request $request, Referee $referee)
     {
-        $referee->fill(['name' => $request->name, 'profession' => $request->profession]);
+        $referee->fill(['name' => $request->name, 'phone' => $referee->phone,'profession' => $request->profession]);
         $referee->save();
         return json_encode($referee);
     }

@@ -1,5 +1,6 @@
 import React from "react";
 import {StyleSheet, css} from "aphrodite";
+import logo from './image.png';
 
 export default class Login extends React.Component {
 
@@ -21,10 +22,24 @@ export default class Login extends React.Component {
 		this.setState({login: false});
 	}
 
-	registerAccount = () => {
+	checkAccount = () => {
+		var xhr = new XMLHttpRequest();
+		var data = "user_name" + encodeURIComponent(this.state.username) + "&password=" + encodeURIComponent(this.state.password);
 
-		console.log(this.state.username);
-		console.log(this.state.password);
+		xhr.addEventListener("readystatechange", () => {
+			if (this.readyState === 4 || this.readyState === 200) {
+				console.log(this.responseText);
+				this.props.changeLogin();
+			} else {
+				console.log(this.responseText);
+			}
+		});
+		xhr.open("POST", "http://138.68.150.49/api/login");
+		xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+		xhr.send(data);
+	}
+
+	registerAccount = () => {
 
 		var xhr = new XMLHttpRequest();
         var data = "user_name=" + encodeURIComponent(this.state.username) + "&password=" + encodeURIComponent(this.state.password) + "&c_password=" + encodeURIComponent(this.state.cpassword);
@@ -46,11 +61,11 @@ export default class Login extends React.Component {
 			return (
 				<div className={css(styles.centralFlex)}>
 					<div className={css(styles.middle, styles.centralFlex)}>
-		  				<input placeholder="Username" className={css(styles.textArea)} onChange={(e) => this.props.changeUser(e)}/>
-		  				<input type="password" placeholder="Password" className={css(styles.textArea)} onChange={(e) => this.props.changePass(e)}/>
+		  				<input placeholder="Username" className={css(styles.textArea)} onChange={e => this.setState({username: e.target.value})}/>
+		  				<input type="password" placeholder="Password" className={css(styles.textArea)} onChange={e => this.setState({password: e.target.value})}/>
 		  			</div>
 	  				
-	  				<button className={css(styles.signinButton)} onClick={() => this.props.changeLogin()}>Sign in</button>
+	  				<button className={css(styles.signinButton)} onClick={() => this.checkAccount()}>Sign in</button>
 	  			</div>
 			);
 		} else {
@@ -65,8 +80,6 @@ export default class Login extends React.Component {
 
 					<button className={css(styles.registerButton)} onClick={() => this.registerAccount()}>Register Now</button>
 
-
-
 				</div>
 			);
 		}
@@ -76,17 +89,20 @@ export default class Login extends React.Component {
 
 		return (
 
-			<div className={css(styles.loginBox, styles.centralFlex)}>
-
-				<div className={css(styles.horizontal)}>
-					<div onClick={() => this.loginTrue()} className={css(styles.choice)}>Login</div>
-					<div onClick={() => this.loginFalse()} className={css(styles.choice)}>Register</div>
-				</div>
+			<div>
+				<img src={logo} className={css(styles.logo)} />
+				<div className={css(styles.loginBox, styles.centralFlex)}>
 
 
-  				{this.getBody()}
-      		</div>
+					<div className={css(styles.horizontal)}>
+						<div onClick={() => this.loginTrue()} className={css(styles.choice)}>Login</div>
+						<div onClick={() => this.loginFalse()} className={css(styles.choice)}>Register</div>
+					</div>
 
+
+	  				{this.getBody()}
+	      		</div>
+	      	</div>
 
 		);
 	}
@@ -101,16 +117,18 @@ const styles = StyleSheet.create({
 		justifyContext: "center",
 	},
 	loginBox: {
-		marginTop: 100,
 		width: 300,
 		height: 230,
+		border: '1px solid #d1d3d6',
+		borderRadius: 3
 	},
 	textArea: {
 		resize: 'none',
-		height: 40,
-		width: '95%',
-		border: 'none',
+		height: 37,
+		width: 290,
+		border: '0.5px solid #d1d3d6',
 		borderRadius: 5,
+		textAlign: 'center',
 	},
 	horizontal: {
 		display: 'flex',
@@ -122,6 +140,7 @@ const styles = StyleSheet.create({
 	choice: {
 		marginRight: 10,
 		marginLeft: 10,
+		cursor: 'pointer',
 	},
 	registerBox: {
 		marginTop: 100,
@@ -150,5 +169,10 @@ const styles = StyleSheet.create({
 	},
 	middle: {
 		height: 145,
+	},
+	logo: {
+		height: 95,
+		marginBottom: 5,
+		marginTop: 100,
 	}
 });
