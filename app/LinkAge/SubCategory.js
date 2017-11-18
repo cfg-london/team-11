@@ -9,7 +9,7 @@ export default class SubCategory extends React.Component {
 
  getTitle(){
     var id=this.props.id;
-    var one=['nope'];
+    var one=['Falls', 'Medication or Prescription issues', 'Getting to your GP or Hospital', 'treatment', 'flu jabs' ,'Community nursing','Physio', 'osteopathy and chiropody','Falls','Alarms', 'Housing adaptations'];
     var two=['yeee'];
     var three=['lit'];
     var four=['asdf'];
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     flex:3, 
     padding:20,
     fontSize: 20,
-    color: '#FFFFFF',  
+    color: '#000',  
 
   }
 
