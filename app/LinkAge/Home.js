@@ -14,10 +14,18 @@ import {
 
 import Countries from './Countries';
 
+import call from 'react-native-phone-call'
+
 
 import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
 
+    const args = {
+      number: '+447759249808', // String value with the number to call
+      prompt: false // Optional boolean property. Determines if the user should be prompt prior to the call 
+    }
+
 export default class Home extends React.Component {
+
 
     constructor(props) {
       super(props);
@@ -45,7 +53,7 @@ export default class Home extends React.Component {
           <View style={{margin:7}} />
           <Button 
             onPress={() =>
-            navigate('Name')}
+            call(args).catch(console.error)}
             title="Call"
           />
           <Button 

@@ -9,40 +9,55 @@ export default class SubCategory extends React.Component {
 
  getTitle(){
     var id=this.props.id;
+    var one=['nope'];
+    var two=['yeee'];
+    var three=['lit'];
+    var four=['asdf'];
+    var five=['asdff'];
+    var six=['mmememe'];
+    var seven=['i want to die'];
+    var eight=['asdfasdfjkladfjl'];
+    var nine=['memes', 'poop'];
     if(id==1)
-      return 'Fall';
+      return one;
     if(id==2)
-      return 'Legal';
+      return two;
     if(id==3)
-      return 'Money';
+      return three;
     if(id==4)
-      return 'Later Life';
+      return four;
     if(id==5)
-      return 'Home Issues';
+      return five;
     if(id==6)
-      return 'Out and About';
+      return six;
     if(id==7)
-      return 'Lonliness';
+      return seven;
     if(id==8)
-      return 'Crisis';
+      return eight;
     if(id==9)
-      return 'Practical Support';
-    return 'sub category'
+      return nine;
   }
 
 
-  getImage(){
-
+  getGroup(){
+    var titles=this.getTitle();
+    var x=[];
+    for(i=0; i<titles.length; i++){
+    x.push( <TouchableHighlight style={styles.container}>
+      <View style={styles.container}>
+      <Text style={styles.textItem}>{titles[i]}</Text>
+      </View>
+    </TouchableHighlight>);
+  }
+    return x;
   }
 
 render(){
   return(
-   <TouchableHighlight style={styles.container}>
-      <View style={styles.container}>
-      <Text style={styles.textItem}>{this.getTitle()}</Text>
-      </View>
-    </TouchableHighlight>
-    )
+    <View>
+      {this.getGroup()}
+    </View>
+    );
 }
 
 

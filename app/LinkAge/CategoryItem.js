@@ -36,8 +36,9 @@ export default class CategoryItem extends React.Component {
   }
 
 render(){
+  var id=(this.props.id);
   return(
-   <TouchableHighlight style={styles.container} onPress={()=>this.props.func(this.props.id)}>
+   <TouchableHighlight style={styles.container} onPress={()=>this.props.func(id)}>
       <View style={styles.container}>
       <Text style={styles.textItem}>{this.getTitle()}</Text>
       </View>
