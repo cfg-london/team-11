@@ -15,8 +15,11 @@ export default class Register extends React.Component {
 
 	registerAccount = () => {
 
+		console.log(this.state.username);
+		console.log(this.state.password);
+
 		var xhr = new XMLHttpRequest();
-        var data = "user_name=" + this.state.username + "&password=" + this.state.password + "&c_password=" + this.state.cpassword;
+        var data = "user_name=" + encodeURIComponent(this.state.username) + "&password=" + encodeURIComponent(this.state.password) + "&c_password=" + encodeURIComponent(this.state.cpassword);
         xhr.addEventListener("readystatechange", function() {
             if (this.readyState === 4 || this.readyState === 200) {
                 console.log(this.responseText);
@@ -44,11 +47,11 @@ export default class Register extends React.Component {
 			<div className={css(styles.registerBox)}>
 
 				<div>Username</div>
-				<textarea className={css(styles.textarea)}></textarea>
+				<textarea onChange={e => this.setState({username: e.target.value})} className={css(styles.textarea)}></textarea>
 				<div>Password</div>
-				<textarea className={css(styles.textarea)}></textarea>
+				<textarea onChange={e => this.setState({password: e.target.value})} className={css(styles.textarea)}></textarea>
 				<div>Confirm Password</div>
-				<textarea className={css(styles.textarea)}></textarea>
+				<textarea onChange={e => this.setState({cpassword: e.target.value})} className={css(styles.textarea)}></textarea>
 				<button onClick={() => this.registerAccount()}>Register a new account</button>
 
 
