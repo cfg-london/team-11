@@ -11,15 +11,15 @@
 
                         <table style="width:100%">
                             <tr>
-                                <th>Urgency</th>
-                                <th>Type</th>
-                                <th>Reference_id</th>
+                                <th style="margin-right:10px;margin-left:10px">Urgency</th>
+                                <th style="margin-right:10px;margin-left:10px">Type</th>
+                                <th style="margin-right:10px;margin-left:10px">Reference_id</th>
                             </tr>
                             @foreach($archives as $archive)
                                 <tr>
-                                    <td>{{ $archive->urgency }}</td>
-                                    <td>{{ $archive->type }}</td>
-                                    <td>{{ $archive->referee_id }}</td>
+                                    <td style="margin-right:10px;margin-left:10px">{{ urldecode($archive->urgency) }}</td>
+                                    <td style="margin-right:10px;margin-left:10px">{{ urldecode($archive->type) }}</td>
+                                    <td style="margin-right:10px;margin-left:10px">{{ urldecode($archive->referee_id) }}</td>
                                 </tr>
                             @endforeach
 
