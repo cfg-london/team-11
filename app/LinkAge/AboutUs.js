@@ -14,7 +14,29 @@ import {
   StackNavigator,
 } from 'react-navigation';
 
+import Countries from './Countries';
+
+
+import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
+
 export default class AboutUs extends React.Component {
+
+    constructor(props) {
+      super(props);
+    this.state = {
+      language: "en",
+    }
+    Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
+
+    }
+
+    setLanguage(language) {
+      Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',language);
+      this.setState({
+        language: language,
+      });
+    }
+
 
     openLink(url){
     Linking.canOpenURL(url).then(supported => {
@@ -29,13 +51,10 @@ export default class AboutUs extends React.Component {
     render() {
     const { navigate } = this.props.navigation;
     return (
+      <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
-        <Text style={{fontSize: 27, margin: 10}}>
-          About Us
-        </Text>
-        <Text style={styles.text}>
-          We work on the frontline in the struggle against poverty. Based in the East End of London we give some of the UK’s most deprived communities a voice, providing access to free advice and support and working together to tackle social injustice.
-        </Text>
+      <PowerTranslator style={{fontSize: 27, margin:10}} text={'About Us'} />
+      <PowerTranslator text={'We work on the frontline in the struggle against poverty. Based in the East End of London we give some of the UK’s most deprived communities a voice, providing access to free advice and support and working together to tackle social injustice.'} />
         <Button
           style={styles.button}
           onPress={() => this.openLink("http://www.toynbeehall.org.uk/")}
@@ -46,7 +65,10 @@ export default class AboutUs extends React.Component {
           onPress={() => navigate('Home')}
           title="Next"
         />
-      </ScrollView>      
+      </ScrollView>  
+      <Countries onClick={this.setLanguage.bind(this)}/>
+      </View>
+    
     )
    }
 }
@@ -55,8 +77,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   input:{
     fontSize: 20,

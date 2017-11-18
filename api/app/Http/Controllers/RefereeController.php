@@ -14,7 +14,7 @@ class RefereeController extends Controller
      */
     public function index()
     {
-        return Referee::all();
+        return json_encode(Referee::all());
     }
 
     /**
@@ -39,7 +39,7 @@ class RefereeController extends Controller
         $referee->name = $request->name;
         $referee->profession = $request->profession ;
         $referee->save();
-        return $referee;
+        return json_encode($referee);
     }
 
     /**
@@ -50,7 +50,7 @@ class RefereeController extends Controller
      */
     public function show(Referee $referee)
     {
-        return $referee;
+        return json_encode($referee);
     }
 
     /**
@@ -75,7 +75,7 @@ class RefereeController extends Controller
     {
         $referee->fill(['name' => $request->name, 'profession' => $request->profession]);
         $referee->save();
-        return $referee;
+        return json_encode($referee);
     }
 
     /**

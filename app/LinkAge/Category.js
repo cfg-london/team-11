@@ -72,7 +72,11 @@ export default class Category extends React.Component {
         <Text style={{fontSize: 27}}>
           Pick a category
         </Text>
-          <SubCategory id={1}/>
+          <SubCategory id={11}/>
+          <SubCategory id={12}/>
+          <SubCategory id={13}/>
+          <SubCategory id={14}/>
+          <SubCategory id={15}/>
         <Button 
           onPress={()=> navigate('Notes')}
           title="Sumbit"
