@@ -4,11 +4,11 @@ import {
     Text,
     TextInput,
     View,
-    Button,
-    StyleSheet,
-    AsyncStorage
+      StyleSheet,
+    AsyncStorage,
+    Image,
   } from 'react-native';
-
+import { Button } from 'react-native-elements';
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -27,6 +27,15 @@ import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-
 
 export default class Home extends React.Component {
 
+
+  static navigationOptions = ({ navigation, screenProps }) => ({
+      headerTitle: "Welcome to Linkage+ app!",
+      headerStyle: {
+        backgroundColor: '#FF8E00'
+      },
+      headerTintColor: '#FFFFFF',
+      /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
+  });
 
     constructor(props) {
       super(props);
@@ -61,22 +70,43 @@ export default class Home extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={{padding: 20}}>
-        <PowerTranslator  style={{fontSize: 27}} text={'Welcome to Linkage+ App!'} />
+        <Image
+          style={styles.image}
+          source={require('./logo.jpg')}
+        />
           <View style={{margin:7}} />
-          <Button 
-            onPress={() =>
-            call(args).catch(console.error)}
-            title="Call"
-          />
+
           <Button 
             onPress={() =>
             this.setUrgency(1)}
-            title="Urgent"
+            title={'Urgent\nReferal'}
+            backgroundColor='#FF8E00'
+            borderRadius={20}
+            fontSize={26}
+            padding={40}
+            large
           />
+          <Text style={fontSize=100}>  </Text>
           <Button 
             onPress={() =>
             this.setUrgency(0)}
-            title="NonUrgent"
+            title={'Non-Urgent\nReferal'}
+            backgroundColor='#FF8E00'
+          borderRadius={20}
+          fontSize={26}
+          textStyle={styles.button}
+                    padding={40}
+          large
+          />
+          <Text style={fontSize=100}>  </Text>
+          <Button 
+            onPress={() =>
+            call(args).catch(console.error)}
+            title="Call Us"
+            backgroundColor='#FF8E00'
+            fontSize={20}
+          borderRadius={20}
+          padding={40}
           />
 
         </ScrollView>  
@@ -94,5 +124,14 @@ const styles = StyleSheet.create({
   input:{
     fontSize: 20,
     height: 50,
+  },
+    image:{
+    margin:0,
+    width: '100%',
+    resizeMode: 'contain',
+ 
+  },
+  button:{
+    textAlign: 'center',
   }
 });

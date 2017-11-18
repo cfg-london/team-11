@@ -4,15 +4,12 @@ import {
     Text,
     TextInput,
     View,
-    Button,
     StyleSheet,
     AsyncStorage
   } from 'react-native';
 
-import {
-  StackNavigator,
-} from 'react-navigation';
-
+import {StackNavigator,} from 'react-navigation';
+import { Button } from 'react-native-elements';
 import Countries from './Countries';
 
 
@@ -23,6 +20,16 @@ import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-
   }
 
 export default class Contact extends React.Component {
+
+  static navigationOptions = ({ navigation, screenProps }) => ({
+      headerTitle: "Contact Details",
+      headerStyle: {
+        backgroundColor: '#FF8E00'
+      },
+      headerTintColor: '#FFFFFF',
+      /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
+  });
+
 
     constructor(props) {
       super(props);
@@ -62,16 +69,18 @@ export default class Contact extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={{padding: 20}}>
-        <PowerTranslator style={{fontSize: 27}} text={'Details :'} />
-        <PowerTranslator text={'Address'} />
+       <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Address'} />
           <TextInput placeholder='Address' onChangeText={(address) => this.setState({address})} style={styles.input} />
-          <PowerTranslator text={'Phone'} />
+          <PowerTranslator style={{fontSize: 22, fontWeight:'bold'}} text={'Phone'} />
           <TextInput placeholder='Phone'  keyboardType={'phone-pad'} onChangeText={(phone) => this.setState({phone})} style={styles.input} />
           <View style={{margin:7}} />
           <Button 
             onPress={() =>
             this.setDetails()}
             title="Sumbit"
+            backgroundColor='#FF8E00'
+          borderRadius={20}
+          large
           />
         </ScrollView>    
         <Countries onClick={this.setLanguage.bind(this)}/>

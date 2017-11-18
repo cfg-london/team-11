@@ -4,7 +4,6 @@ import {
     Text,
     TextInput,
     View,
-    Button,
     StyleSheet,
     AsyncStorage
   } from 'react-native';
@@ -14,12 +13,22 @@ import {
 } from 'react-navigation';
 
 import Countries from './Countries';
-
+import { Button } from 'react-native-elements';
 
 import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
 
 
 export default class Name extends React.Component {
+
+  static navigationOptions = ({ navigation, screenProps }) => ({
+      headerTitle: "Whats your referee's name",
+      headerStyle: {
+        backgroundColor: '#FF8E00'
+      },
+      headerTintColor: '#FFFFFF',
+      /*headerRight: <Button title="Settings" onPress={() => navigation.navigate('SettingsScreen')} />,*/
+  });
+
     constructor(props) {
       super(props);
     this.state = {
@@ -59,14 +68,15 @@ export default class Name extends React.Component {
     return (
       <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
-        <PowerTranslator style={{fontSize: 27}} text={'Name:'} />
-
         <TextInput placeholder='Name' onChangeText={(name) => this.setState({name})} style={styles.input} />
         <View style={{margin:7}} />
         <Button 
           onPress={() =>
           this.setName()}
-          title="Sumbit"
+          title="Next"
+          backgroundColor='#FF8E00'
+          borderRadius={20}
+          large
         />
       </ScrollView>  
         <Countries onClick={this.setLanguage.bind(this)}/>

@@ -73,20 +73,21 @@ export default class AboutUs extends React.Component {
       <PowerTranslator text={'The idea of this app is for people who are in contact with the vunerable elderely and provide a medium for them to quickly and effortly tell linkage about the issue so we can have a solution faster.'} /> 
       <Text/>
       <PowerTranslator text={'We hope you enjoy the app and use it to help the community'} /> 
-        <View style={{padding: 20, flexDirection: 'row', allign: 'center'}}>
+        <View style={{padding: 20, flexDirection: 'column', allign: 'center'}}>
         <Button
           style={styles.button}
           backgroundColor='#FF8E00'
           borderRadius={20}
-          large
+          margin={100}
           onPress={() => this.openLink("http://www.toynbeehall.org.uk/")}
           title="Our Website"
         />
+        <Text/>
         <Button 
           style={styles.button}
           backgroundColor='#FF8E00'
           borderRadius={20}
-          large
+          
           width={300}
           onPress={() => navigate('Home')}
           title="Next"
@@ -121,6 +122,7 @@ const styles = StyleSheet.create({
   image:{
     margin:0,
     width: '100%',
-    resizeMode: 'contain', 
+    resizeMode: 'contain',
+ 
   }
 });
