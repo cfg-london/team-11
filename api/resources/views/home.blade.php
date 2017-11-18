@@ -21,17 +21,22 @@
                                 <th>Delete</th>
                             </tr>
                             @foreach($references as $reference)
-                                <tr>
-                                    <td>{{ $reference->name }}</td>
-                                    <td>{{ $reference->phone }}</td>
-                                    <td>{{ $reference->address }}</td>
-                                    <td>{{ $reference->urgency }}</td>
-                                    <td>{{ $reference->type }}</td>
-                                    <td>{{ $reference->referee_id }}</td>
-                                    <td>{{ $reference->notes }}</td>
-                                    <td></td>
-                                </tr>
 
+
+                                    <tr>
+                                        <td>{{ urldecode($reference->name) }}</td>
+                                        <td>{{ urldecode($reference->phone) }}</td>
+                                        <td>{{ urldecode($reference->address) }}</td>
+                                        <td>{{ urldecode($reference->urgency) }}</td>
+                                        <td>{{ urldecode($reference->type) }}</td>
+                                        <td>{{ urldecode($reference->referee_id) }}</td>
+                                        <td>{{ urldecode($reference->notes) }}</td>
+                                        <td><form class="form-horizontal" method="post" action="/delete">
+                                            {{ csrf_field() }}
+                                            <input type="text" class="form-control" id="reference_id" value={{$reference->reference_id}} style="border:none;color:white">                                                  </form>
+                                        </td>
+                                        <td><button type="submit" class="btn btn-primary">Delete</button></td>
+                                    </tr>
                             @endforeach
                         </table>
 

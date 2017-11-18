@@ -17,9 +17,9 @@
                             </tr>
                             @foreach($archives as $archive)
                                 <tr>
-                                    <td>{{ $archive->urgency }}</td>
-                                    <td>{{ $archive->type }}</td>
-                                    <td>{{ $archive->referee_id }}</td>
+                                    <td>{{ urldecode($archive->urgency) }}</td>
+                                    <td>{{ urldecode($archive->type) }}</td>
+                                    <td>{{ urldecode($archive->referee_id) }}</td>
                                 </tr>
                             @endforeach
 
