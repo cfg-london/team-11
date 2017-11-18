@@ -23,3 +23,4 @@ Route::resource('reference','ReferenceController');
 
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
+Route::post('send_all', 'SmsController@sendAll');

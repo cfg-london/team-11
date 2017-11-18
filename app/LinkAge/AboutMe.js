@@ -9,31 +9,12 @@ import {
     Picker,
   } from 'react-native';
 
-
-
-
 import { Button } from 'react-native-elements'
-
-import {
-  StackNavigator,
-} from 'react-navigation';
-
+import {StackNavigator,} from 'react-navigation';
 import Countries from './Countries';
-
-
 import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
 
 export default class AboutMe extends React.Component {
-
-  static navigationOptions = ({ navigation, screenProps }) => ({
-      headerTitle: "Tell us about yourself",
-      headerStyle: {
-        backgroundColor: '#FF8E00'
-      },
-      headerTintColor: '#FFFFFF',
-      
-  });
-
 
     constructor(props) {
       super(props);

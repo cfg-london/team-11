@@ -29,6 +29,7 @@ export default class Overview extends React.Component {
     }
     Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',this.state.language);
     this.getUrgency();
+    this.getRefereeID();
     this.getName();
     this.getAddress();
     this.getPhone();
@@ -48,6 +49,17 @@ export default class Overview extends React.Component {
         var urgency = await AsyncStorage.getItem('urgency');
         this.setState({
           urgency: urgency,
+        });
+      } catch (error) {
+        // Error saving data
+      }
+    }
+
+    async getRefereeID(){
+      try {
+        var refereeID = await AsyncStorage.getItem('refereeID');
+        this.setState({
+          refereeID: refereeID,
         });
       } catch (error) {
         // Error saving data
@@ -108,6 +120,65 @@ export default class Overview extends React.Component {
         // Error saving data
       }
     }
+
+
+    sendData() {
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = async(e) => {
+        if (request.readyState !== 4) {
+
+          return;
+        }
+        // Checks if the data has been found
+        if (request.status === 200) {
+
+        } else {
+          console.warn('Data not found');
+          console.warn(request.status);
+        }
+      };
+      console.log(this.state.name);
+      console.log(this.state.phone);
+      console.log(this.state.address);
+      console.log(this.state.urgency);
+      //console.log(this.state.type);
+      console.log(this.state.notes);
+      console.log(this.state.refereeID);
+      request.open('POST', 'http://138.68.150.49/api/reference?name=' + this.state.name + '&phone=' + this.state.phone + '&address=' + this.state.address + '&urgency=' + Boolean(this.state.urgency) + '&type=' + this.state.category  + '&referee_id=' + this.state.refereeID + '&notes=' + this.state.notes);
+      request.send();
+
+  }
+
+  async submit() {
+    this.sendData();
+    try {
+      await AsyncStorage.removeItem('name');
+      await AsyncStorage.removeItem('urgency');
+      await AsyncStorage.removeItem('phone');
+      await AsyncStorage.removeItem('address');
+      await AsyncStorage.removeItem('type');
+      await AsyncStorage.removeItem('notes');
+    } catch (error) {
+      // Error saving data
+    }
+
+    this.props.navigation.navigate('Home');
+  }
+
+  async addAnother() {
+    this.sendData();
+    try {
+      await AsyncStorage.removeItem('name');
+      await AsyncStorage.removeItem('urgency');
+      await AsyncStorage.removeItem('phone');
+      await AsyncStorage.removeItem('address');
+    } catch (error) {
+      // Error saving data
+    }
+
+    this.props.navigation.navigate('Category');
+  }
+
     render() {
     const { navigate } = this.props.navigation;
     return (
@@ -121,11 +192,11 @@ export default class Overview extends React.Component {
         <PowerTranslator text={this.state.category} />
         <PowerTranslator text={this.state.notes} />
         <Button 
-          onPress={()=> navigate('Consent')}
+          onPress={()=> this.submit()}
           title="Sumbit"
         />
         <Button 
-          onPress={()=> navigate('Category')}
+          onPress={()=> this.addAnother()}
           title="Add another"
         />
       </ScrollView>   
