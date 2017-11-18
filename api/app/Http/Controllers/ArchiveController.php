@@ -17,4 +17,10 @@ class ArchiveController extends Controller
         $archive->save();
         return $archive;
     }
+
+    public static function index()
+    {
+        $archives = Archive::all();
+        return view('archives')->with('archives', $archives);
+    }
 }

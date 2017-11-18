@@ -16,7 +16,9 @@ class ReferenceController extends Controller
      */
     public function index()
     {
-        return json_encode(Reference::all());
+        $references = Reference::orderBy('urgency','desc')->latest()->get();
+
+        return view('home')->with('references', $references);
     }
 
     /**
@@ -55,9 +57,9 @@ class ReferenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Reference $reference)
+    public function show($id)
     {
-        return json_encode($reference);
+        return json_encode(Reference::find($id));
     }
 
     /**
