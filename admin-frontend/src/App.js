@@ -21,11 +21,9 @@ export default class App extends React.Component {
 	getSubBody = () => {
 		if (!this.state.loggedIn) {
 			return (
-				<Login 
-      					changeLogin={this.changeLogin}
-      				/>
+				<Login changeLogin={this.changeLogin}/>
 			);
-		} else if (this.state.loggedIn) {
+		} else {
 			return <View />;
 		}
 	}

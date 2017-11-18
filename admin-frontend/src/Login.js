@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
 		justifyContext: "center",
 	},
 	loginBox: {
-		marginTop: 100,
 		width: 300,
 		height: 230,
 		border: '1px solid #d1d3d6',
@@ -174,5 +173,6 @@ const styles = StyleSheet.create({
 	logo: {
 		height: 95,
 		marginBottom: 5,
+		marginTop: 100,
 	}
 });
