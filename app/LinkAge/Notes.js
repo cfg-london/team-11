@@ -53,7 +53,7 @@ export default class Notes extends React.Component {
       <View style={styles.container}>
       <ScrollView style={{padding: 20}}>
         <PowerTranslator style={{fontSize: 27}} text={'Notes'} />
-        <TextInput style={styles.input}multiline={true} placeholder='' onChangeText={(notes) => this.setState({notes})} style={styles.input} />
+        <TextInput style={styles.input} placeholder='' onChangeText={(notes) => this.setState({notes})} style={styles.input} />
         <Button 
           onPress={()=> this.setUrgency()}
           title="Sumbit"
