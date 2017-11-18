@@ -1,0 +1,77 @@
+import React from 'react';
+import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
+
+export default class SubCategory extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+ getTitle(){
+    var id=this.props.id;
+    if(id==1)
+      return 'Fall';
+    if(id==2)
+      return 'Legal';
+    if(id==3)
+      return 'Money';
+    if(id==4)
+      return 'Later Life';
+    if(id==5)
+      return 'Home Issues';
+    if(id==6)
+      return 'Out and About';
+    if(id==7)
+      return 'Lonliness';
+    if(id==8)
+      return 'Crisis';
+    if(id==9)
+      return 'Practical Support';
+    return 'sub category'
+  }
+
+
+  getImage(){
+
+  }
+
+render(){
+  return(
+   <TouchableHighlight style={styles.container}>
+      <View style={styles.container}>
+      <Text style={styles.textItem}>{this.getTitle()}</Text>
+      </View>
+    </TouchableHighlight>
+    )
+}
+
+
+}
+
+const styles = StyleSheet.create({
+   container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex:1
+   },
+
+  image: {
+    padding:20,
+    flex:1 ,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  },
+
+  textItem: {
+    flex:3, 
+    padding:20,
+    fontSize: 20,
+    color: '#FFFFFF',  
+
+  }
+
+});
+
+
+module.exports = SubCategory;
