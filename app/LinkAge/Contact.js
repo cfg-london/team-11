@@ -37,10 +37,12 @@ export default class Contact extends React.Component {
       Translation.setConfig(ProviderTypes.Google, 'AIzaSyA0DMZ38W76bNFkkU-l5Op_hPJBnZFQJ74',language);
       this.setState({
         language: language,
+        address: "",
       });
     }
 
     async setDetails() {
+      if(this.state.address!="" && (this.state.phone)!=""){
       try {
         await AsyncStorage.setItem('address', "" + (this.state.address));
         await AsyncStorage.setItem('phone', "" + (this.state.phone));
@@ -48,6 +50,11 @@ export default class Contact extends React.Component {
       } catch (error) {
         // Error saving data
       }
+      }else{
+        alert('Please fill in all fields!')
+      }
+
+      
 
     }
 
@@ -60,8 +67,8 @@ export default class Contact extends React.Component {
         <PowerTranslator style={{fontSize: 27}} text={'Details :'} />
         <PowerTranslator text={'Address'} />
           <TextInput placeholder='Address' onChangeText={(address) => this.setState({address})} style={styles.input} />
-                  <PowerTranslator text={'Phone'} />
-          <TextInput placeholder='Phone' onChangeText={(phone) => this.setState({phone})} style={styles.input} />
+          <PowerTranslator text={'Phone'} />
+          <TextInput placeholder='Phone'  keyboardType={'phone-pad'} onChangeText={(phone) => this.setState({phone})} style={styles.input} />
           <View style={{margin:7}} />
           <Button 
             onPress={() =>
